@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 
 namespace StudyGuide.DataBase
 {
-    class Subject
+    class WorkType
     {
         public int ID { get; set; }
         public string Name { get; set; }
+        public List<FlashCards> FlashCards  { get; set; }
     }
 }

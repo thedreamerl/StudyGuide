@@ -6,9 +6,12 @@ using System.Threading.Tasks;
 
 namespace StudyGuide.DataBase
 {
-    class Subject
+    class StudyPlan
     {
         public int ID { get; set; }
-        public string Name { get; set; }
+        public Schedule ScheduleID { get; set; }
+        public DateTime Begin { get; set; }
+        public DateTime End { get; set; }
+        public List<Tasks> Tasks { get; set; }
     }
 }
