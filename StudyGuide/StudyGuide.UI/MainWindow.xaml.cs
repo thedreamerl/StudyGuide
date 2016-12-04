@@ -14,14 +14,12 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Microsoft.Win32;
 using System.IO;
+using System.Threading;
+using System.Windows.Threading;
+using System.Globalization;
 
 namespace StudyGuide.UI
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
-    /// 
-
     
     public partial class MainWindow : Window
     {
@@ -30,6 +28,22 @@ namespace StudyGuide.UI
         {
             reg.SetValue("StudyGuide", System.Reflection.Assembly.GetExecutingAssembly().Location);
             InitializeComponent();
+            StartClock();
+        }
+
+        private void StartClock()
+        {
+            DispatcherTimer timer = new DispatcherTimer();
+            timer.Interval = TimeSpan.FromSeconds(1);
+            timer.Tick += tickEvent;
+            timer.Start(); 
+        }
+
+        private void tickEvent(object sender, EventArgs e)
+        {
+
+            timeNow.Text = DateTime.Now.ToString("T");
+            dayNow.Text = DateTime.Now.ToString("D",CultureInfo.CreateSpecificCulture("en-US"));
         }
     }
 }
