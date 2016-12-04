@@ -12,7 +12,7 @@ using System.Text.RegularExpressions;
 
 namespace StudyGuide.Logic
 {
-    static class Repository
+    public static class NetRepository
     {
         public static string Translate(string word)
         {
@@ -27,7 +27,6 @@ namespace StudyGuide.Logic
                var translation = JsonConvert.DeserializeObject<TranslatingData>(result);
                return translation.Text[0];
             }
-            
         }
 
         public static string GetDefinition(string word)
