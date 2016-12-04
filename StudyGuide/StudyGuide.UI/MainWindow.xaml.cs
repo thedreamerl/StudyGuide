@@ -12,16 +12,23 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Microsoft.Win32;
+using System.IO;
 
 namespace StudyGuide.UI
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
+    /// 
+
+    
     public partial class MainWindow : Window
     {
+        RegistryKey reg = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
         public MainWindow()
         {
+            reg.SetValue("StudyGuide", System.Reflection.Assembly.GetExecutingAssembly().Location);
             InitializeComponent();
         }
     }
