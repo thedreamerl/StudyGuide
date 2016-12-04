@@ -15,9 +15,6 @@ using System.Windows.Shapes;
 
 namespace StudyGuide.UI
 {
-    /// <summary> 
-    /// Логика взаимодействия для MainWindow.xaml 
-    /// </summary> 
     public partial class FlashCards : Window
     {
         public FlashCards()
