@@ -50,7 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Context.cs" />
-    <Compile Include="FlashCards.cs" />
+    <Compile Include="DBO\FlashCards.cs" />
     <Compile Include="Migrations\201612040901053_Initial.cs" />
     <Compile Include="Migrations\201612040901053_Initial.Designer.cs">
       <DependentUpon>201612040901053_Initial.cs</DependentUpon>
@@ -65,11 +65,11 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Schedule.cs" />
-    <Compile Include="StudyPlan.cs" />
-    <Compile Include="Subject.cs" />
-    <Compile Include="Tasks.cs" />
-    <Compile Include="WorkType.cs" />
+    <Compile Include="DBO\Schedule.cs" />
+    <Compile Include="DBO\StudyPlan.cs" />
+    <Compile Include="DBO\Subject.cs" />
+    <Compile Include="DBO\Tasks.cs" />
+    <Compile Include="DBO\WorkType.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

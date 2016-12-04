@@ -10,25 +10,17 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Microsoft.Win32;
-using System.IO;
 
 namespace StudyGuide.UI
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Логика взаимодействия для AddDeadline.xaml
     /// </summary>
-    /// 
-
-    
-    public partial class MainWindow : Window
+    public partial class AddDeadline : Window
     {
-        RegistryKey reg = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
-        public MainWindow()
+        public AddDeadline()
         {
-            reg.SetValue("StudyGuide", System.Reflection.Assembly.GetExecutingAssembly().Location);
             InitializeComponent();
         }
     }
