@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using StudyGuide.Logic;
 
 namespace StudyGuide.UI
 {
@@ -65,13 +66,42 @@ namespace StudyGuide.UI
                 if (result == MessageBoxResult.No)
                     return;
             }
-            // Some function... 
+            try
+            {
+                if ((bool)langRadioButton.IsChecked)
+                    resultTextBox.Text = NetRepository.Translate(headerTextBox.Text);
+                else
+                    resultTextBox.Text = NetRepository.GetDefinition(headerTextBox.Text);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Unfortunately, a mistake happened while loading the needed information:\n" + ex.Message, "Error");
+            }
             isEdited = false;
         }
 
         private void resultTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             isEdited = true;
+        }
+
+        private void createButton_Click(object sender, RoutedEventArgs e)
+        {
+            // some function for adding current card to context
+            MessageBoxResult result = MessageBox.Show("The card was successfully created!\nDo you want to creat one more?", "Attention", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            if (result == MessageBoxResult.No) { }
+            // the process of creating a new deadline is done, to the main/to the window of deadline
+            else
+            {
+                headerTextBlock.Visibility = Visibility.Hidden;
+                headerTextBox.Visibility = Visibility.Hidden;
+                headerTextBox.Text = "";
+                resultTextBlock.Visibility = Visibility.Hidden;
+                resultTextBox.Visibility = Visibility.Hidden;
+                resultTextBox.Text = "";
+                loadButton.Visibility = Visibility.Hidden;
+                createButton.Visibility = Visibility.Hidden;
+            }
         }
     }
 }

@@ -115,10 +115,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\StudyGuide.DataBase\StudyGuide.DataBase.csproj">
-      <Project>{392376a6-ab72-4b3b-893f-3a76e9eadb96}</Project>
-      <Name>StudyGuide.DataBase</Name>
-    </ProjectReference>
     <ProjectReference Include="..\StudyGuide.Logic\StudyGuide.Logic.csproj">
       <Project>{f702ce56-db8d-48fc-8cca-b517ba05bfa1}</Project>
       <Name>StudyGuide.Logic</Name>

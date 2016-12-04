@@ -46,7 +46,7 @@
   <ItemGroup>
     <Compile Include="DTO\TranslatingData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repository.cs" />
+    <Compile Include="NetRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
