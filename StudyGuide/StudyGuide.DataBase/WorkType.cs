@@ -10,6 +10,6 @@ namespace StudyGuide.DataBase
     {
         public int ID { get; set; }
         public string Name { get; set; }
-        public List<FlashCards> FlashCards  { get; set; }
+       
     }
 }
