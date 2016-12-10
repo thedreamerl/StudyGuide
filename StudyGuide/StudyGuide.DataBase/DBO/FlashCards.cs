@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace StudyGuide.DataBase
 {
-    class FlashCards
+   public class FlashCards
     {
         public int ID { get; set; }
         public string Term { get; set; }

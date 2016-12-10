@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace StudyGuide.DataBase
 {
-    class Context: DbContext
+   public class Context: DbContext
     {
         public DbSet<FlashCards> Flashards{ get; set; }
         public DbSet<Schedule> Schedule { get; set; }

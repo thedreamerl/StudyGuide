@@ -54,6 +54,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DTO\TranslatingData.cs" />
+    <Compile Include="EntityRepos\ScheduleRepo.cs" />
+    <Compile Include="EntityRepos\StudyPlanRepo.cs" />
     <Compile Include="Models\FlashCardViewModel.cs" />
     <Compile Include="Models\ScheduleViewModel.cs" />
     <Compile Include="Models\TaskViewModel.cs" />
@@ -64,8 +66,12 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="EntityRepos\" />
+    <ProjectReference Include="..\StudyGuide.DataBase\StudyGuide.DataBase.csproj">
+      <Project>{392376a6-ab72-4b3b-893f-3a76e9eadb96}</Project>
+      <Name>StudyGuide.DataBase</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

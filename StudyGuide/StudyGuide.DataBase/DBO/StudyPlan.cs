@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace StudyGuide.DataBase
 {
-    class StudyPlan
+  public class StudyPlan
     {
         public int ID { get; set; }
         public Schedule ScheduleID { get; set; }
