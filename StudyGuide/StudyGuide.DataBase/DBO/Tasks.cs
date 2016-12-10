@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace StudyGuide.DataBase
+namespace StudyGuide.DataBase.DBO
 {
     public class Tasks
     {

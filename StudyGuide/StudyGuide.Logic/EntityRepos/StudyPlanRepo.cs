@@ -1,4 +1,5 @@
 ﻿using StudyGuide.DataBase;
+using StudyGuide.DataBase.DBO;
 using StudyGuide.Logic.Models;
 using System;
 using System.Collections.Generic;
