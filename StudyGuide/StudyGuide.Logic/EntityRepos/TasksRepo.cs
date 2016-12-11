@@ -25,7 +25,7 @@ namespace StudyGuide.Logic.EntityRepos
                         StudyPlan = c.StudyPlan.FirstOrDefault(x => x.Begin == studyPlan && x.ScheduleID.SubjectID.Name == schedule.Subject && x.ScheduleID.WorkTypeID.Name == schedule.WorkType)
                     });
                 }
-                temp.AddRange(temp.ToArray());
+                c.Tasks.AddRange(temp.ToArray());
                 c.SaveChanges();
             }
         }
