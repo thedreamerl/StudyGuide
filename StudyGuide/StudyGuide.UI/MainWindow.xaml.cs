@@ -45,5 +45,11 @@ namespace StudyGuide.UI
             timeNow.Text = DateTime.Now.ToString("T");
             dayNow.Text = DateTime.Now.ToString("D",CultureInfo.CreateSpecificCulture("en-US"));
         }
+
+        private void AddingButton_Click(object sender, RoutedEventArgs e)
+        {
+            AddDeadline add = new AddDeadline();
+            add.ShowDialog();
+        }
     }
 }

@@ -5,7 +5,7 @@ xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
 xmlns:local="clr-namespace:StudyGuide.UI" 
 mc:Ignorable="d" 
-Title="New Flash Card" Height="350" Width="525">
+Title="New Flash Card" Height="350" Width="525" Background="#FF8ACACD">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="150"/>
@@ -35,11 +35,10 @@ Title="New Flash Card" Height="350" Width="525">
             </Grid.RowDefinitions>
             <TextBlock Name="resultTextBlock" Grid.Row="0" Margin="5" />
             <TextBox Name="resultTextBox" Grid.Row="1" Margin="10" VerticalAlignment="Stretch" TextChanged="resultTextBox_TextChanged"/>
-            <Button Name="createButton" Grid.Row="2" HorizontalAlignment="Right" Width="50" Height="20" Margin="0,0,10,0" Click="createButton_Click">Create</Button>
+            <Button Name="createButton" Grid.Row="2" HorizontalAlignment="Right" Width="50" Height="20" Margin="0,0,10,0" Click="createButton_Click" Background="#FF5491BB">Create</Button>
         </Grid>
         <Grid Grid.Column="1" Grid.Row="1"></Grid>
         <RadioButton Name="langRadioButton" Grid.Row="0" Grid.Column="0" Margin="15,30,0,90" Checked="langRadioButton_Checked">Language Card</RadioButton>
         <RadioButton Name="DefRadioButton" Grid.Row="0" Grid.Column="0" Margin="15,60,0,70" Checked="DefRadioButton_Checked">Definition Card</RadioButton>
-        <CheckBox x:Name="checkBox" Content="CheckBox" Grid.Column="1" HorizontalAlignment="Left" Margin="584,137,-287,0" VerticalAlignment="Top" Width="100"/>
     </Grid>
 </Window>
