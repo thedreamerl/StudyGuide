@@ -26,6 +26,10 @@ namespace StudyGuide.UI
             InitializeComponent();
             Subjects.ItemsSource = Factory.Default.GetSubjectRepo().ShowAll();
             WorkTypes.ItemsSource = Factory.Default.GetWorkTypeRepo().ShowAll();
+            TextBlock_Days.Visibility = Visibility.Hidden;
+            Days.Visibility = Visibility.Hidden;
+            Days.DisplayDateStart = DateTime.Now.AddDays(1);
+            Deadline.DisplayDateStart = DateTime.Now.AddDays(1);
         }
 
         private void NewSubject_Click(object sender, RoutedEventArgs e)
@@ -94,11 +98,18 @@ namespace StudyGuide.UI
                 WorkType = WorkTypes.Text,
                 Deadline = (DateTime)Deadline.SelectedDate
             };
-            Factory.Default.GetScheduleRepo().AddNew(Schedule);
-            foreach (var date in Days.SelectedDates)
+            try
             {
-                var studyPlan = new EditStudyPlan(Schedule, date);
-                studyPlan.ShowDialog();
+                Factory.Default.GetScheduleRepo().AddNew(Schedule);
+                foreach (var date in Days.SelectedDates)
+                {
+                    var studyPlan = new EditStudyPlan(Schedule, date);
+                    studyPlan.ShowDialog();
+                }
+            }
+            catch (ArgumentException ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
     }

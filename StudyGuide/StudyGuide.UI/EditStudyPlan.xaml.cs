@@ -54,7 +54,14 @@ namespace StudyGuide.UI
             Date.AddHours(double.Parse(temp[0]));
             Date.AddMinutes(double.Parse(temp[1]));
             Factory.Default.GetStudyPlanRepo().AddNew(Date, Schedule);
-            // нужно еще добавить таски
+            var list = new List<string>();
+            foreach (var item in TasksList.Items)
+            {
+                list.Add(item.ToString());
+            }
+            Factory.Default.GetTasksRepo().AddNewTasks(list, Date, Schedule);
+            MessageBox.Show("Study plan item has been added succussfully!");
+            this.Hide();
         }
     }
 }
