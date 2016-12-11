@@ -72,6 +72,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="EditStudyPlan.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="FlashCards.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -89,6 +93,9 @@
     </Compile>
     <Compile Include="Deadline.xaml.cs">
       <DependentUpon>Deadline.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EditStudyPlan.xaml.cs">
+      <DependentUpon>EditStudyPlan.xaml</DependentUpon>
     </Compile>
     <Compile Include="FlashCards.xaml.cs">
       <DependentUpon>FlashCards.xaml</DependentUpon>

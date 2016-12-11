@@ -31,7 +31,6 @@ Title="New Flash Card" Height="350" Width="525" Background="#FF8ACACD">
                 <RowDefinition Height="28"/>
                 <RowDefinition Height="3*"/>
                 <RowDefinition Height="1*"/>
-                <RowDefinition Height="1*"/>
             </Grid.RowDefinitions>
             <TextBlock Name="resultTextBlock" Grid.Row="0" Margin="5" />
             <TextBox Name="resultTextBox" Grid.Row="1" Margin="10" VerticalAlignment="Stretch" TextChanged="resultTextBox_TextChanged"/>
