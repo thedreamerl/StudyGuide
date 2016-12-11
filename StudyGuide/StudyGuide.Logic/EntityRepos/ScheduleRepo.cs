@@ -25,17 +25,17 @@ namespace StudyGuide.Logic.EntityRepos
             }
         }
 
-        public IQueryable<ScheduleViewModel> ShowAll()
+        public IEnumerable<ScheduleViewModel> ShowAll()
         {
             using (var c = new Context())
             {
-                var result = from s in c.Schedule
+                var result = (from s in c.Schedule
                              select new ScheduleViewModel
                              {
                                  Subject = s.SubjectID.Name,
                                  WorkType = s.WorkTypeID.Name,
                                  Deadline = s.Deadline
-                             };
+                             }).ToList();
                 return result;
             }
         }
