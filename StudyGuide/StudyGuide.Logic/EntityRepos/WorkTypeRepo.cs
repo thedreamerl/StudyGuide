@@ -21,12 +21,12 @@ namespace StudyGuide.Logic.EntityRepos
             }
         }
 
-        public IQueryable<string> ShowAll()
+        public IEnumerable<string> ShowAll()
         {
             using (var c = new Context())
             {
-                var result = from w in c.WorkType
-                             select w.Name;
+                var result = (from w in c.WorkType
+                             select w.Name).ToList();
                 return result;
             }
         }

@@ -24,14 +24,14 @@ namespace StudyGuide.Logic.EntityRepos
             }
         }
 
-        public IQueryable<DateTime> ShowAll(ScheduleViewModel schedule)
+        public IEnumerable<DateTime> ShowAll(ScheduleViewModel schedule)
         {
             using (var c = new Context())
             {
-                var result = from dt in c.StudyPlan
+                var result = (from dt in c.StudyPlan
                              where dt.ScheduleID.SubjectID.Name == schedule.Subject
                              where dt.ScheduleID.WorkTypeID.Name == schedule.WorkType
-                             select dt.Begin;
+                             select dt.Begin).ToList();
                 return result;
             }
         }
