@@ -58,6 +58,7 @@
     <Compile Include="EntityRepos\StudyPlanRepo.cs" />
     <Compile Include="EntityRepos\SubjectRepo.cs" />
     <Compile Include="EntityRepos\WorkTypeRepo.cs" />
+    <Compile Include="Factory.cs" />
     <Compile Include="Models\FlashCardViewModel.cs" />
     <Compile Include="Models\ScheduleViewModel.cs" />
     <Compile Include="Models\TaskViewModel.cs" />

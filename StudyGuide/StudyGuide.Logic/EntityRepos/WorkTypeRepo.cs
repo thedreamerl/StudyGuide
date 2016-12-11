@@ -8,7 +8,7 @@ using StudyGuide.DataBase;
 
 namespace StudyGuide.Logic.EntityRepos
 {
-    class WorkTypeRepo
+    public class WorkTypeRepo
     {
         public void AddNew(string el)
         {

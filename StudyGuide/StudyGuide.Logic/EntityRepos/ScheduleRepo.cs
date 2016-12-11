@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace StudyGuide.Logic.EntityRepos
 {
-    class ScheduleRepo
+    public class ScheduleRepo
     {
         public void AddNew(ScheduleViewModel el)
         {
