@@ -1,4 +1,6 @@
-﻿using System;
+﻿using StudyGuide.Logic;
+using StudyGuide.Logic.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,10 +22,15 @@ namespace StudyGuide.UI
     public partial class EditStudyPlan : Window
     {
         List<string> Tasks = new List<string>();
+        ScheduleViewModel Schedule;
+        DateTime Date;
 
-        public EditStudyPlan()
+        public EditStudyPlan(ScheduleViewModel schedule, DateTime date)
         {
             InitializeComponent();
+            TextBlockDate.Text = date.ToShortDateString();
+            Date = date;
+            Schedule = schedule;
         }
         private void AddingButton_Click(object sender, RoutedEventArgs e)
         {
@@ -33,6 +40,21 @@ namespace StudyGuide.UI
                 TasksList.Items.Add(TaskName.Text);
                 TaskName.Text = "";
             }
+        }
+
+        private void Next_Click(object sender, RoutedEventArgs e)
+        {
+            // нужно сделать проверку регулярным выражением времени 
+            if (TasksList.Items == null || TasksList.Items.Count == 0)
+            {
+                MessageBox.Show("You haven't added any tasks, please add some");
+                return;
+            }
+            var temp = Time.Text.Split(':');
+            Date.AddHours(double.Parse(temp[0]));
+            Date.AddMinutes(double.Parse(temp[1]));
+            Factory.Default.GetStudyPlanRepo().AddNew(Date, Schedule);
+            // нужно еще добавить таски
         }
     }
 }

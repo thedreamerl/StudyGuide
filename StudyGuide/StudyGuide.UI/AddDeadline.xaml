@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:StudyGuide.UI"
         mc:Ignorable="d"
-        Title="Add a new deadline" Height="300" Width="500" MinHeight="250" MinWidth="450">
+        Title="Add a new deadline" Height="410" Width="500" MinHeight="410" MinWidth="450">
     <Window.Resources>
         <Style TargetType="TextBlock">
             <Setter Property="FontFamily" Value="Tempus Sans ITC"/>
@@ -27,19 +27,31 @@
                 <RowDefinition/>
                 <RowDefinition Height="1.5*"/>
                 <RowDefinition/>
-                <RowDefinition Height="1.5*"/>
+                <RowDefinition Height="190"/>
             </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="40"/>
+            </Grid.ColumnDefinitions>
             <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5,0,0,0">Choose subjest:</TextBlock>
-            <ComboBox Grid.Row="1" Margin="5"></ComboBox>
+            <ComboBox x:Name="Subjects" Grid.Row="1" Margin="5" IsEditable="True"></ComboBox>
+            <Button x:Name="NewSubject" Grid.Column="1" Grid.Row="1" Margin="5" Click="NewSubject_Click">Add</Button>
             <TextBlock Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5,0,0,0">Choose worktype:</TextBlock>
-            <ComboBox Grid.Row="3" Margin="5"></ComboBox>
+            <ComboBox x:Name="WorkTypes" Grid.Row="3" Margin="5" IsEditable="True"></ComboBox>
+            <Button x:Name="NewWorkType" Grid.Column="1" Grid.Row="3" Margin="5" Click="NewWorkType_Click">Add</Button>
             <TextBlock Grid.Row="4" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5,0,0,0">Deadline:</TextBlock>
-            <DatePicker x:Name="Deadline" Grid.Row="5" Margin="5" FirstDayOfWeek="Monday" Height="25"/>
-            <TextBlock Grid.Row="6" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5,0,0,0">Days for working:</TextBlock>
-            <DatePicker x:Name="Days" Grid.Row="7" Margin="5" FirstDayOfWeek="Monday" Height="25"/>
+            <DatePicker x:Name="Deadline" Grid.Row="5" Margin="5" FirstDayOfWeek="Monday" Height="25" SelectedDateChanged="Deadline_SelectedDateChanged">
+                <DatePicker.Resources>
+                    <Style TargetType="DatePickerTextBox">
+                        <Setter Property="IsReadOnly" Value="True"/>
+                    </Style>
+                </DatePicker.Resources>
+            </DatePicker>
+            <TextBlock x:Name="TextBlock_Days" Grid.Row="6" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5,0,0,0">Days for working:</TextBlock>
+            <Calendar x:Name="Days" Grid.Row="8" SelectionMode="MultipleRange" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10"></Calendar>
         </Grid>
         <Grid Grid.Column="1">
-            <Button x:Name="Next" Content="Next" Background="#43CD80" HorizontalAlignment="Right" Margin="0,0,10,10" Width="75" VerticalAlignment="Bottom" FontSize="14"/>
+            <Button x:Name="Next" Content="Next" Background="#43CD80" HorizontalAlignment="Right" Margin="0,0,10,10" Width="75" VerticalAlignment="Bottom" FontSize="14" Click="Next_Click"/>
         </Grid>
     </Grid>
 </Window>

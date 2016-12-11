@@ -24,7 +24,7 @@ Title="EditStudyPlan" Height="400" Width="525" MinWidth="500" MinHeight="200" Ba
                 <RowDefinition/>
             </Grid.RowDefinitions>
             <TextBlock Margin="5" FontSize="16">Editing the day:</TextBlock>
-            <TextBlock Grid.Row="1" Margin="5" FontSize="16">11.12.2016</TextBlock>
+            <TextBlock x:Name="TextBlockDate" Grid.Row="1" Margin="5" FontSize="16">11.12.2016</TextBlock>
         </Grid>
         <Grid Grid.Column="1">
             <Grid.RowDefinitions>
@@ -35,13 +35,13 @@ Title="EditStudyPlan" Height="400" Width="525" MinWidth="500" MinHeight="200" Ba
                 <RowDefinition Height="35"/>
             </Grid.RowDefinitions>
             <TextBlock Margin="5" VerticalAlignment="Center">Choose the start time:</TextBlock>
-            <TextBox Margin="170,5,45,5" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"></TextBox>
+            <TextBox x:Name="Time" Margin="170,5,45,5" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"></TextBox>
             <TextBlock Grid.Row="1" Margin="5" VerticalAlignment="Center">Add new task:</TextBlock>
             <TextBox x:Name="TaskName" Grid.Row="1" Margin="170,5,45,5" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"></TextBox>
             <Button x:Name="AddingButton" Grid.Row="1" VerticalAlignment="Stretch" HorizontalAlignment="Right" Margin="0,5,10,5" Background="#FFF1E072" Click="AddingButton_Click">Add</Button>
             <TextBlock Grid.Row="2" Margin="5" VerticalAlignment="Center">List of tasks:</TextBlock>
-            <ListBox x:Name="TasksList" Grid.Row="3" Margin="5"></ListBox>
-            <Button x:Name="Next" Grid.Row="4" Content="Next" Background="#FFF1E072" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="75" Margin="0,0,10,10" FontSize="14"/>
+            <ListBox x:Name="TasksList" Grid.Row="3" Margin="5,7,5,3"></ListBox>
+            <Button x:Name="Next" Grid.Row="4" Content="Next" Background="#FFF1E072" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="75" Margin="0,0,10,10" FontSize="14" Click="Next_Click"/>
         </Grid>
 
     </Grid>
