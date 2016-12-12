@@ -11,6 +11,7 @@ namespace StudyGuide.Logic.EntityRepos
 {
     public class ScheduleRepo
     {
+       //private event Action<ScheduleViewModel> UpdateList;
         public void AddNew(ScheduleViewModel el)
         {
             using (var c = new Context())
@@ -22,7 +23,8 @@ namespace StudyGuide.Logic.EntityRepos
                     Deadline = el.Deadline
                 });
                 c.SaveChanges();
-            }
+          }
+            
         }
 
         public IEnumerable<ScheduleViewModel> ShowAll()

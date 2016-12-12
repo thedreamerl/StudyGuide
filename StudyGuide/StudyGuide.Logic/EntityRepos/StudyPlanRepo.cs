@@ -9,9 +9,11 @@ using System.Threading.Tasks;
 
 namespace StudyGuide.Logic.EntityRepos
 {
+    
     public class StudyPlanRepo
     {
-        public void AddNew(DateTime el, ScheduleViewModel schedule)
+        private event Action<ScheduleViewModel> AddEvent;
+                public void AddNew(DateTime el, ScheduleViewModel schedule)
         {
             using (var c = new Context())
             {
@@ -21,6 +23,7 @@ namespace StudyGuide.Logic.EntityRepos
                     Begin = el
                 });
                 c.SaveChanges();
+
             }
         }
 

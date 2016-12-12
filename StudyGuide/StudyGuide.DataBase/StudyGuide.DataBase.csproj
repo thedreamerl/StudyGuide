@@ -63,6 +63,10 @@
     <Compile Include="Migrations\201612040918264_Initial3.Designer.cs">
       <DependentUpon>201612040918264_Initial3.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201612121642190_initial4.cs" />
+    <Compile Include="Migrations\201612121642190_initial4.Designer.cs">
+      <DependentUpon>201612121642190_initial4.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="DBO\Schedule.cs" />
@@ -84,6 +88,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201612040918264_Initial3.resx">
       <DependentUpon>201612040918264_Initial3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612121642190_initial4.resx">
+      <DependentUpon>201612121642190_initial4.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
