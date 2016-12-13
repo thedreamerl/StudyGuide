@@ -61,7 +61,7 @@ namespace StudyGuide.UI
             }
             Factory.Default.GetTasksRepo().AddNewTasks(list, Date, Schedule);
             MessageBox.Show("Study plan item has been added succussfully!");
-            this.Hide();
+            this.Close();
         }
     }
 }

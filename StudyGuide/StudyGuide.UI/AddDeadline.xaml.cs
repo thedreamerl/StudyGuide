@@ -101,16 +101,26 @@ namespace StudyGuide.UI
             try
             {
                 Factory.Default.GetScheduleRepo().AddNew(Schedule);
-                foreach (var date in Days.SelectedDates)
-                {
-                    var studyPlan = new EditStudyPlan(Schedule, date);
-                    studyPlan.ShowDialog();
-                }
             }
             catch (ArgumentException ex)
             {
                 MessageBox.Show(ex.Message);
+                return;
             }
+            this.Hide();
+            foreach (var date in Days.SelectedDates)
+            {
+                var studyPlan = new EditStudyPlan(Schedule, date);
+                studyPlan.ShowDialog();
+            }
+            MessageBoxResult result = MessageBox.Show("Do you want to create flash cards for revising?", "Question", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            if (result == MessageBoxResult.Yes)
+            {
+                var fc = new FlashCards();
+                fc.ShowDialog();
+            }
+            MessageBox.Show("Congratulations! New deadline was created!");
+            this.Close();
         }
     }
 }
