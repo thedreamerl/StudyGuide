@@ -56,7 +56,7 @@
                 <RowDefinition Height='50'/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            <ListBox Name="listBoxDeadlines" Grid.Row="1" Margin="10,0,10,10" HorizontalContentAlignment="Stretch" Padding="2">
+            <ListBox Name="listBoxDeadlines" Grid.Row="1" Margin="10,0,10,10" HorizontalContentAlignment="Stretch" Padding="2" MouseDoubleClick="listBoxDeadlines_MouseDoubleClick">
                 <ListBox.ItemTemplate>
                     <DataTemplate DataType="local:ScheduleViewModel">
                         <Grid Margin="0 5">
