@@ -35,7 +35,7 @@ Title="EditStudyPlan" Height="400" Width="525" MinWidth="500" MinHeight="200" Ba
                 <RowDefinition Height="35"/>
             </Grid.RowDefinitions>
             <TextBlock Margin="5" VerticalAlignment="Center">Choose the start time:</TextBlock>
-            <TextBox x:Name="Time" Margin="170,5,45,5" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"></TextBox>
+            <TextBox x:Name="Time" Margin="170,5,45,5" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">00:00</TextBox>
             <TextBlock Grid.Row="1" Margin="5" VerticalAlignment="Center">Add new task:</TextBlock>
             <TextBox x:Name="TaskName" Grid.Row="1" Margin="170,5,45,5" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"></TextBox>
             <Button x:Name="AddingButton" Grid.Row="1" VerticalAlignment="Stretch" HorizontalAlignment="Right" Margin="0,5,10,5" Background="#FFF1E072" Click="AddingButton_Click">Add</Button>
