@@ -16,6 +16,9 @@ namespace StudyGuide.Logic.EntityRepos
         {
             using (var c = new Context())
             {
+                if (c.Schedule.FirstOrDefault(x => x.SubjectID.Name == el.Subject && x.WorkTypeID.Name == el.WorkType) != null)
+                    throw new ArgumentException("Deadline for this subject and worktype does already exists");
+
                 c.Schedule.Add(new Schedule
                 {
                     SubjectID = c.Subjects.First(x => x.Name == el.Subject),
