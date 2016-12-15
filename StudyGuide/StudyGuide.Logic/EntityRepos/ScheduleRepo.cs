@@ -11,7 +11,7 @@ namespace StudyGuide.Logic.EntityRepos
 {
     public class ScheduleRepo
     {
-       private event Action UpdateList;
+       public event Action UpdateList;
         public void AddNew(ScheduleViewModel el)
         {
             using (var c = new Context())
