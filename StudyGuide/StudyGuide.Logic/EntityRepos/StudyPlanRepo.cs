@@ -26,7 +26,7 @@ namespace StudyGuide.Logic.EntityRepos
                 });
                 c.SaveChanges();
             }
-            AddEvent.Invoke();
+            AddEvent?.Invoke();
         }
 
         public IEnumerable<StudyPlanViewModel> ShowAll(ScheduleViewModel schedule)
@@ -50,8 +50,10 @@ namespace StudyGuide.Logic.EntityRepos
         {
             using (var c = new Context())
             {
+                var temp = DateTime.Now.Date;
+                var temp2 = temp.AddDays(1);
                 var result = (from s in c.StudyPlan
-                              where s.Begin.Date == DateTime.Now.Date
+                              where s.Begin >= temp && s.Begin < temp2
                               orderby s.Begin
                               select new StudyPlanViewModel
                               {
