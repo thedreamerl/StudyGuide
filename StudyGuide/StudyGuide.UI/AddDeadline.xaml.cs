@@ -118,7 +118,7 @@ namespace StudyGuide.UI
             MessageBoxResult result = MessageBox.Show("Do you want to create flash cards for revising?", "Question", MessageBoxButton.YesNo, MessageBoxImage.Question);
             if (result == MessageBoxResult.Yes)
             {
-                var fc = new FlashCards();
+                var fc = new FlashCards(Schedule);
                 fc.ShowDialog();
             }
             MessageBox.Show("Congratulations! New deadline was created!");
