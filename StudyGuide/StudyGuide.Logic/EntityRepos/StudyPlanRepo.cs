@@ -9,11 +9,11 @@ using System.Threading.Tasks;
 
 namespace StudyGuide.Logic.EntityRepos
 {
-    
+
     public class StudyPlanRepo
     {
-        private event Action<ScheduleViewModel> AddEvent;
-                public void AddNew(DateTime el, ScheduleViewModel schedule)
+        public event Action AddEvent;
+        public void AddNew(DateTime el, ScheduleViewModel schedule)
         {
             using (var c = new Context())
             {
@@ -23,8 +23,8 @@ namespace StudyGuide.Logic.EntityRepos
                     Begin = el
                 });
                 c.SaveChanges();
-
             }
+            AddEvent.Invoke();
         }
 
         public IEnumerable<DateTime> ShowAll(ScheduleViewModel schedule)
@@ -32,9 +32,9 @@ namespace StudyGuide.Logic.EntityRepos
             using (var c = new Context())
             {
                 var result = (from dt in c.StudyPlan
-                             where dt.ScheduleID.SubjectID.Name == schedule.Subject
-                             where dt.ScheduleID.WorkTypeID.Name == schedule.WorkType
-                             select dt.Begin).ToList();
+                              where dt.ScheduleID.SubjectID.Name == schedule.Subject
+                              where dt.ScheduleID.WorkTypeID.Name == schedule.WorkType
+                              select dt.Begin).ToList();
                 return result;
             }
         }

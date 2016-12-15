@@ -11,7 +11,7 @@ namespace StudyGuide.Logic.EntityRepos
 {
     public class ScheduleRepo
     {
-       public event Action UpdateList;
+        public event Action UpdateList;
         public void AddNew(ScheduleViewModel el)
         {
             using (var c = new Context())
@@ -23,9 +23,8 @@ namespace StudyGuide.Logic.EntityRepos
                     Deadline = el.Deadline
                 });
                 c.SaveChanges();
-          }
+            }
             UpdateList?.Invoke();
-            
         }
 
         public IEnumerable<ScheduleViewModel> ShowAll()
@@ -34,12 +33,12 @@ namespace StudyGuide.Logic.EntityRepos
             {
                 var result = (from s in c.Schedule
                               orderby s.Deadline
-                             select new ScheduleViewModel
-                             {
-                                 Subject = s.SubjectID.Name,
-                                 WorkType = s.WorkTypeID.Name,
-                                 Deadline = s.Deadline
-                             }).ToList();
+                              select new ScheduleViewModel
+                              {
+                                  Subject = s.SubjectID.Name,
+                                  WorkType = s.WorkTypeID.Name,
+                                  Deadline = s.Deadline
+                              }).ToList();
                 return result;
             }
         }
