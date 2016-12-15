@@ -89,8 +89,8 @@ namespace StudyGuide.UI
         {
             // some function for adding current card to context
             MessageBoxResult result = MessageBox.Show("The card was successfully created!\nDo you want to creat one more?", "Attention", MessageBoxButton.YesNo, MessageBoxImage.Question);
-            if (result == MessageBoxResult.No) { }
-            // the process of creating a new deadline is done, to the main/to the window of deadline
+            if (result == MessageBoxResult.No)
+                this.Close();
             else
             {
                 headerTextBlock.Visibility = Visibility.Hidden;
