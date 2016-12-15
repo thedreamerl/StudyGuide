@@ -13,12 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using StudyGuide.Logic;
+using StudyGuide.Logic.Models;
 
 namespace StudyGuide.UI
 {
     public partial class FlashCards : Window
     {
-        public FlashCards()
+        ScheduleViewModel schedule;
+        public FlashCards(ScheduleViewModel s)
         {
             InitializeComponent();
             headerTextBlock.Visibility = Visibility.Hidden;
@@ -27,7 +29,7 @@ namespace StudyGuide.UI
             resultTextBox.Visibility = Visibility.Hidden;
             loadButton.Visibility = Visibility.Hidden;
             createButton.Visibility = Visibility.Hidden;
-
+            schedule = s;
         }
 
         bool isEdited = false;
@@ -87,7 +89,19 @@ namespace StudyGuide.UI
 
         private void createButton_Click(object sender, RoutedEventArgs e)
         {
-            // some function for adding current card to context
+            try
+            {
+                Factory.Default.GetFlashCardsRepo().AddFlashCard(new FlashCardViewModel
+                {
+                    Term = headerTextBox.Text,
+                    Definition = resultTextBox.Text
+                }, schedule);
+            }
+            catch (ArgumentException ex)
+            {
+                MessageBox.Show(ex.Message);
+                return;
+            }
             MessageBoxResult result = MessageBox.Show("The card was successfully created!\nDo you want to creat one more?", "Attention", MessageBoxButton.YesNo, MessageBoxImage.Question);
             if (result == MessageBoxResult.No)
                 this.Close();

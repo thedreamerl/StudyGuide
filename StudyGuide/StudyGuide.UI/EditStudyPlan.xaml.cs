@@ -54,7 +54,7 @@ namespace StudyGuide.UI
                 Time.Text = "00:00";
                 return;
             }
-            if (Date.AddHours(int.Parse(match.Groups[1].Value)).AddMinutes(int.Parse(match.Groups[2].Value)) > DateTime.Now)
+            if (Date.AddHours(int.Parse(match.Groups[1].Value)).AddMinutes(int.Parse(match.Groups[2].Value)) <= DateTime.Now)
             {
                 MessageBox.Show("Chosen time is earlier than the current, choose an appropriate one");
                 Time.Text = "00:00";

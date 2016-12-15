@@ -1,4 +1,5 @@
-﻿using System;
+﻿using StudyGuide.Logic.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,9 +20,11 @@ namespace StudyGuide.UI
     /// </summary>
     public partial class Deadline : Window
     {
-        public Deadline()
+        public Deadline(ScheduleViewModel s)
         {
             InitializeComponent();
+            SubjectText.Text = s.Subject;
+            TypeText.Text = s.WorkType;
         }
     }
 }

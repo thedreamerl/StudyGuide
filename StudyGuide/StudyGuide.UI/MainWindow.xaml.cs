@@ -79,7 +79,8 @@ namespace StudyGuide.UI
                     if (temp.GetType() == typeof(ScheduleViewModel))
                     {
                         var schedule = temp as ScheduleViewModel;
-                        // some work with windows
+                        var deadline = new Deadline(schedule);
+                        deadline.ShowDialog();
                     }
                     break;
                 }
