@@ -28,7 +28,8 @@ namespace StudyGuide.UI
             WorkTypes.ItemsSource = Factory.Default.GetWorkTypeRepo().ShowAll();
             TextBlock_Days.Visibility = Visibility.Hidden;
             Days.Visibility = Visibility.Hidden;
-            Days.DisplayDateStart = DateTime.Now.AddDays(1);
+            HelperText.Visibility = Visibility.Hidden;
+            Days.DisplayDateStart = DateTime.Now;
             Deadline.DisplayDateStart = DateTime.Now.AddDays(1);
         }
 
@@ -68,6 +69,7 @@ namespace StudyGuide.UI
         {
             TextBlock_Days.Visibility = Visibility.Visible;
             Days.Visibility = Visibility.Visible;
+            HelperText.Visibility = Visibility.Visible;
             Days.DisplayDateEnd = Deadline.SelectedDate;
         }
         private void Next_Click(object sender, RoutedEventArgs e)

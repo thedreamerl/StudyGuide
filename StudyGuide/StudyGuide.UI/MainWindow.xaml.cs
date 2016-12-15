@@ -32,10 +32,16 @@ namespace StudyGuide.UI
             StartClock();
             UpdateListSource();
             Factory.Default.GetScheduleRepo().UpdateList += UpdateListSource;
+            UpdateTodayPlan();
+            Factory.Default.GetStudyPlanRepo().AddEvent += UpdateTodayPlan;
         }
         private void UpdateListSource()
         {
             listBoxDeadlines.ItemsSource = Factory.Default.GetScheduleRepo().ShowAll();
+        }
+        private void UpdateTodayPlan()
+        {
+            listBoxStudyPlan.ItemsSource = Factory.Default.GetStudyPlanRepo().GetTodayStudyPlans();
         }
 
         private void StartClock()
