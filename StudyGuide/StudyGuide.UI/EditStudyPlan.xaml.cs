@@ -62,7 +62,7 @@ namespace StudyGuide.UI
             var temp = Time.Text.Split(':');
             Date.AddHours(double.Parse(temp[0]));
             Date.AddMinutes(double.Parse(temp[1]));
-            Factory.Default.GetStudyPlanRepo().AddNew(Date, Schedule);
+            Factory.Default.GetStudyPlanRepo().AddNew(new StudyPlanViewModel { Begin = Date, Subject = Schedule.Subject, WorkType = Schedule.WorkType });
             var list = new List<string>();
             foreach (var item in TasksList.Items)
             {

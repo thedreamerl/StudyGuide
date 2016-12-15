@@ -17,6 +17,7 @@ using System.IO;
 using System.Threading;
 using System.Windows.Threading;
 using System.Globalization;
+using StudyGuide.Logic;
 
 namespace StudyGuide.UI
 {
@@ -29,6 +30,12 @@ namespace StudyGuide.UI
             reg.SetValue("StudyGuide", System.Reflection.Assembly.GetExecutingAssembly().Location);
             InitializeComponent();
             StartClock();
+            UpdateListSource();
+            Factory.Default.GetScheduleRepo().UpdateList += UpdateListSource;
+        }
+        private void UpdateListSource()
+        {
+            listBoxDeadlines.ItemsSource = Factory.Default.GetScheduleRepo().ShowAll();
         }
 
         private void StartClock()
