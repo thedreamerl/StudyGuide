@@ -25,6 +25,7 @@ namespace StudyGuide.Logic
         SubjectRepo _subjectRepo = new SubjectRepo();
         WorkTypeRepo _workTypeRepo = new WorkTypeRepo();
         TasksRepo _tasksRepo = new TasksRepo();
+        FlashCardsRepo _flashCardsRepo = new FlashCardsRepo();
 
         public ScheduleRepo GetScheduleRepo()
         {
@@ -45,6 +46,10 @@ namespace StudyGuide.Logic
         public TasksRepo GetTasksRepo()
         {
             return _tasksRepo;
+        }
+        public FlashCardsRepo GetFlashCardsRepo()
+        {
+            return _flashCardsRepo;
         }
     }
 }
