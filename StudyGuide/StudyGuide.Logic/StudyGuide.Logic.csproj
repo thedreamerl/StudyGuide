@@ -54,6 +54,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DTO\TranslatingData.cs" />
+    <Compile Include="EntityRepos\FlashCardsRepo.cs" />
     <Compile Include="EntityRepos\ScheduleRepo.cs" />
     <Compile Include="EntityRepos\StudyPlanRepo.cs" />
     <Compile Include="EntityRepos\SubjectRepo.cs" />
@@ -62,6 +63,7 @@
     <Compile Include="Factory.cs" />
     <Compile Include="Models\FlashCardViewModel.cs" />
     <Compile Include="Models\ScheduleViewModel.cs" />
+    <Compile Include="Models\StudyPlanViewModel.cs" />
     <Compile Include="Models\TaskViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="NetRepository.cs" />

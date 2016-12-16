@@ -49,6 +49,7 @@
             </DatePicker>
             <TextBlock x:Name="TextBlock_Days" Grid.Row="6" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5,0,0,0">Days for working:</TextBlock>
             <Calendar x:Name="Days" Grid.Row="8" SelectionMode="MultipleRange" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10"></Calendar>
+            <TextBlock x:Name="HelperText" Grid.Row="8" HorizontalAlignment="Right" VerticalAlignment="Center" TextWrapping="Wrap" FontSize="15" Margin="170,0,0,0">If you want to select multiple dates, press Ctrl while choosing</TextBlock>
         </Grid>
         <Grid Grid.Column="1">
             <Button x:Name="Next" Content="Next" Background="#43CD80" HorizontalAlignment="Right" Margin="0,0,10,10" Width="75" VerticalAlignment="Bottom" FontSize="14" Click="Next_Click"/>

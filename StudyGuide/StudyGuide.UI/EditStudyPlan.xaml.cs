@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -44,16 +45,36 @@ namespace StudyGuide.UI
 
         private void Next_Click(object sender, RoutedEventArgs e)
         {
-            // нужно сделать проверку регулярным выражением времени 
+            Regex timeRegex = new Regex(@"^(\d{1,2}):(\d{2})$");
+            Match match = timeRegex.Match(Time.Text);
+            if (!match.Success || int.Parse(match.Groups[1].Value) > 23
+                || int.Parse(match.Groups[2].Value) > 59)
+            {
+                MessageBox.Show("The format of time is incorrect");
+                Time.Text = "00:00";
+                return;
+            }
+            if (Date.AddHours(int.Parse(match.Groups[1].Value)).AddMinutes(int.Parse(match.Groups[2].Value)) <= DateTime.Now)
+            {
+                MessageBox.Show("Chosen time is earlier than the current, choose an appropriate one");
+                Time.Text = "00:00";
+                return;
+            }
             if (TasksList.Items == null || TasksList.Items.Count == 0)
             {
                 MessageBox.Show("You haven't added any tasks, please add some");
                 return;
             }
-            var temp = Time.Text.Split(':');
-            Date.AddHours(double.Parse(temp[0]));
-            Date.AddMinutes(double.Parse(temp[1]));
-            Factory.Default.GetStudyPlanRepo().AddNew(Date, Schedule);
+            Date = Date.AddHours(int.Parse(match.Groups[1].Value)).AddMinutes(int.Parse(match.Groups[2].Value));
+            try
+            {
+                Factory.Default.GetStudyPlanRepo().AddNew(new StudyPlanViewModel { Begin = Date, Subject = Schedule.Subject, WorkType = Schedule.WorkType });
+            }
+            catch (ArgumentException ex)
+            {
+                MessageBox.Show(ex.Message);
+                return;
+            }
             var list = new List<string>();
             foreach (var item in TasksList.Items)
             {

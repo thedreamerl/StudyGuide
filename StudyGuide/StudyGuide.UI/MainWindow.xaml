@@ -31,8 +31,23 @@
                 <TextBlock x:Name="dayNow" Margin="10,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="11" Grid.Row="0"></TextBlock>
                 <TextBlock x:Name="timeNow" Margin="10,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="11" Grid.Row="1"></TextBlock>
             </Grid>
-            <TextBlock x:Name="TasksForToday" HorizontalAlignment="Center" Grid.Row="1">Tasks for today:</TextBlock>
-            <DataGrid x:Name="dataGrid1" HorizontalAlignment="Stretch" Margin="10,30,0,0" Grid.Row="1" VerticalAlignment="Stretch"/>
+            <TextBlock x:Name="TasksForToday" HorizontalAlignment="Center" Grid.Row="1">Plan for today:</TextBlock>
+            <ListBox Name="listBoxStudyPlan" Grid.Row="1" Margin="10,30,0,0" HorizontalContentAlignment="Stretch" Padding="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                <ListBox.ItemTemplate>
+                    <DataTemplate DataType="local:StudyPlanViewModel">
+                        <Grid Margin="0 5">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="2*"/>
+                                <ColumnDefinition Width="4*"/>
+                                <ColumnDefinition Width="3*"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Column="0" Text="{Binding Begin, StringFormat='HH:mm'}"/>
+                            <TextBlock Grid.Column="1" Text="{Binding Subject}"/>
+                            <TextBlock Grid.Column="2" Text="{Binding WorkType}"/>
+                        </Grid>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
             <Calendar HorizontalAlignment="Center" Margin="0,25,0,0"  Grid.Row="2" VerticalAlignment="Top"/>
             <TextBlock x:Name="Calendar" HorizontalAlignment="Center" VerticalAlignment="Top" Grid.Row="2">Calendar</TextBlock>
         </Grid>
@@ -41,18 +56,18 @@
                 <RowDefinition Height='50'/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            <ListBox Name="listBoxDeadlines" Grid.Row="1" Margin="10,0,10,10" HorizontalContentAlignment="Stretch" Padding="2">
+            <ListBox Name="listBoxDeadlines" Grid.Row="1" Margin="10,0,10,10" HorizontalContentAlignment="Stretch" Padding="2" MouseDoubleClick="listBoxDeadlines_MouseDoubleClick">
                 <ListBox.ItemTemplate>
                     <DataTemplate DataType="local:ScheduleViewModel">
                         <Grid Margin="0 5">
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto"/>
-                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="2*"/>
+                                <ColumnDefinition Width="2*"/>
                                 <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
                             <TextBlock Grid.Column="0" Text="{Binding Subject}"/>
                             <TextBlock Grid.Column="1" Text="{Binding WorkType}"/>
-                            <TextBlock Grid.Column="2" Text="{Binding Deadline, StringFormat='dd.MM.yyyy HH:mm'}"/>
+                            <TextBlock Grid.Column="2" Text="{Binding Deadline, StringFormat='dd.MM.yyyy'}"/>
                         </Grid>
                     </DataTemplate>
                 </ListBox.ItemTemplate>

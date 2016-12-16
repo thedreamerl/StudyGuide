@@ -17,6 +17,8 @@ using System.IO;
 using System.Threading;
 using System.Windows.Threading;
 using System.Globalization;
+using StudyGuide.Logic;
+using StudyGuide.Logic.Models;
 
 namespace StudyGuide.UI
 {
@@ -29,6 +31,18 @@ namespace StudyGuide.UI
             reg.SetValue("StudyGuide", System.Reflection.Assembly.GetExecutingAssembly().Location);
             InitializeComponent();
             StartClock();
+            UpdateListSource();
+            Factory.Default.GetScheduleRepo().UpdateList += UpdateListSource;
+            UpdateTodayPlan();
+            Factory.Default.GetStudyPlanRepo().AddEvent += UpdateTodayPlan;
+        }
+        private void UpdateListSource()
+        {
+            listBoxDeadlines.ItemsSource = Factory.Default.GetScheduleRepo().ShowAll();
+        }
+        private void UpdateTodayPlan()
+        {
+            listBoxStudyPlan.ItemsSource = Factory.Default.GetStudyPlanRepo().GetTodayStudyPlans();
         }
 
         private void StartClock()
@@ -50,6 +64,28 @@ namespace StudyGuide.UI
         {
             AddDeadline add = new AddDeadline();
             add.ShowDialog();
+        }
+
+        private void listBoxDeadlines_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            // stackoverflow.com/questions/4454423/c-sharp-listbox-item-double-click-event 
+            DependencyObject obj = (DependencyObject)e.OriginalSource;
+
+            while (obj != null && obj != listBoxDeadlines)
+            {
+                if (obj.GetType() == typeof(ListBoxItem))
+                {
+                    var temp = listBoxDeadlines.SelectedItem;
+                    if (temp.GetType() == typeof(ScheduleViewModel))
+                    {
+                        var schedule = temp as ScheduleViewModel;
+                        var deadline = new Deadline(schedule);
+                        deadline.ShowDialog();
+                    }
+                    break;
+                }
+                obj = VisualTreeHelper.GetParent(obj);
+            }
         }
     }
 }

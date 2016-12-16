@@ -11,11 +11,14 @@ namespace StudyGuide.Logic.EntityRepos
 {
     public class ScheduleRepo
     {
-       //private event Action<ScheduleViewModel> UpdateList;
+        public event Action UpdateList;
         public void AddNew(ScheduleViewModel el)
         {
             using (var c = new Context())
             {
+                if (c.Schedule.FirstOrDefault(x => x.SubjectID.Name == el.Subject && x.WorkTypeID.Name == el.WorkType) != null)
+                    throw new ArgumentException("Deadline for this subject and worktype does already exists");
+
                 c.Schedule.Add(new Schedule
                 {
                     SubjectID = c.Subjects.First(x => x.Name == el.Subject),
@@ -23,8 +26,8 @@ namespace StudyGuide.Logic.EntityRepos
                     Deadline = el.Deadline
                 });
                 c.SaveChanges();
-          }
-            
+            }
+            UpdateList?.Invoke();
         }
 
         public IEnumerable<ScheduleViewModel> ShowAll()
@@ -32,12 +35,13 @@ namespace StudyGuide.Logic.EntityRepos
             using (var c = new Context())
             {
                 var result = (from s in c.Schedule
-                             select new ScheduleViewModel
-                             {
-                                 Subject = s.SubjectID.Name,
-                                 WorkType = s.WorkTypeID.Name,
-                                 Deadline = s.Deadline
-                             }).ToList();
+                              orderby s.Deadline
+                              select new ScheduleViewModel
+                              {
+                                  Subject = s.SubjectID.Name,
+                                  WorkType = s.WorkTypeID.Name,
+                                  Deadline = s.Deadline
+                              }).ToList();
                 return result;
             }
         }
