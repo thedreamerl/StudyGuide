@@ -17,8 +17,10 @@ namespace StudyGuide.Logic.EntityRepos
         {
             using (var c = new Context())
             {
-                if (c.StudyPlan.FirstOrDefault(x => x.Begin == s.Begin) != null)
-                    throw new ArgumentException("You have already planned to study at this time on another subject");
+                var temp = s.Begin.AddMinutes(30);
+                var temp2 = s.Begin.AddMinutes(-30);
+                if (c.StudyPlan.FirstOrDefault(x => x.Begin < temp && x.Begin > temp2) != null)
+                    throw new ArgumentException("You have already planned to study at this time another subject");
                 c.StudyPlan.Add(new StudyPlan
                 {
                     ScheduleID = c.Schedule.First(x => x.SubjectID.Name == s.Subject && x.WorkTypeID.Name == s.WorkType),
@@ -62,6 +64,37 @@ namespace StudyGuide.Logic.EntityRepos
                                   WorkType = s.ScheduleID.WorkTypeID.Name
                               }).ToList();
                 return result;
+            }
+        }
+
+        public IEnumerable<StudyPlanViewModel> GetStudyPlanToDo()
+        {
+            using (var c = new Context())
+            {
+                var result = (from s in c.StudyPlan
+                              where s.Begin <= DateTime.Now
+                              select new StudyPlanViewModel
+                              {
+                                  Begin = s.Begin,
+                                  Subject = s.ScheduleID.SubjectID.Name,
+                                  WorkType = s.ScheduleID.WorkTypeID.Name
+                              }).ToList();
+                return result;
+            }
+        }
+        public void DeletePastStudyPlan(StudyPlanViewModel s)
+        {
+            using (var c = new Context())
+            {
+                var tasksToRemove = from t in c.Tasks
+                                    where t.StudyPlan.Begin == s.Begin
+                                    select t;
+                c.Tasks.RemoveRange(tasksToRemove);
+                var studyPlan = (from st in c.StudyPlan
+                                 where st.Begin == s.Begin
+                                 select st).First();
+                c.StudyPlan.Remove(studyPlan);
+                c.SaveChanges();
             }
         }
     }
