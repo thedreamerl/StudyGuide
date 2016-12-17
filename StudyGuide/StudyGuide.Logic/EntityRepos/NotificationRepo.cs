@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace StudyGuide.Logic.EntityRepos
 {
-    public class NotificationRepo
+    public static class NotificationRepo
     {
 
         public static event Action<StudyPlanViewModel, IEnumerable<TaskViewModel>> Notify;

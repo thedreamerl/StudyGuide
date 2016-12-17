@@ -28,6 +28,21 @@ namespace StudyGuide.Logic.EntityRepos
                 c.SaveChanges();
             }
         }
+        public IEnumerable<FlashCardViewModel> AllFlashCards(ScheduleViewModel s)
+        {
+            using (var c = new Context())
+            {
+                var result = (from fc in c.FlashCards
+                              where fc.ScheduleID.SubjectID.Name == s.Subject && fc.ScheduleID.WorkTypeID.Name == s.WorkType
+                              select new FlashCardViewModel
+                              {
+                                  Term = fc.Term,
+                                  Definition = fc.Definition
+                              }).ToList();
+                return result;
+
+            }
+        }
         public void LevelUp(FlashCardViewModel card,ScheduleViewModel schedule)
         {
             using (var c = new Context())
