@@ -65,10 +65,10 @@ namespace StudyGuide.UI
                 MessageBox.Show("You haven't added any tasks, please add some");
                 return;
             }
-            Date = Date.AddHours(int.Parse(match.Groups[1].Value)).AddMinutes(int.Parse(match.Groups[2].Value));
+            var NewDate = Date.AddHours(int.Parse(match.Groups[1].Value)).AddMinutes(int.Parse(match.Groups[2].Value)); // 
             try
             {
-                Factory.Default.GetStudyPlanRepo().AddNew(new StudyPlanViewModel { Begin = Date, Subject = Schedule.Subject, WorkType = Schedule.WorkType });
+                Factory.Default.GetStudyPlanRepo().AddNew(new StudyPlanViewModel { Begin = NewDate, Subject = Schedule.Subject, WorkType = Schedule.WorkType }); // 
             }
             catch (ArgumentException ex)
             {
@@ -81,7 +81,7 @@ namespace StudyGuide.UI
                 list.Add(item.ToString());
             }
             Factory.Default.GetTasksRepo().AddNewTasks(list, Date, Schedule);
-            MessageBox.Show("Study plan item has been added succussfully!");
+            MessageBox.Show("Study plan item has been added successfully!");
             this.Close();
         }
     }

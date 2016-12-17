@@ -1,0 +1,47 @@
+﻿<Window x:Class="StudyGuide.UI.Notification"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:StudyGuide.UI"
+        mc:Ignorable="d"
+        Title="Notification" SizeToContent="Width" Height="200" 
+WindowStyle="None" 
+AllowsTransparency="True" Topmost="True" Background="#FF90E4A8">
+    <Window.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="Verdana"/>
+            <Setter Property="FontSize" Value="20"/>
+        </Style>
+    </Window.Resources>
+    <Grid RenderTransformOrigin="0,1">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="70"/>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <TextBlock Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center">Time to study!</TextBlock>
+        <TextBlock Grid.Row="1" Margin="5 0" HorizontalAlignment="Center" VerticalAlignment="Center">Programming</TextBlock>
+        <TextBlock Grid.Row="1" Grid.Column="1" Margin="5 0" HorizontalAlignment="Center" VerticalAlignment="Center">Group project</TextBlock>
+        <Button x:Name="PomodoroButton" Grid.Row="2" Margin="10 20" Background="#FF0A8B2E" Click="PomodoroButton_Click">Start Pomodoro</Button>
+        <Button x:Name="FlashCardsButton" Grid.Row="2" Grid.Column="1" Margin="10 20" Background="#FF0A8B2E" Click="FlashCardsButton_Click">Revise with flash cards</Button>
+        <Button x:Name="CloseButton" Grid.Row="3" Grid.ColumnSpan="2" Margin="50 10" Background="#FF801616" Click="CloseButton_Click">Finish studying</Button>
+        <Grid.Triggers>
+            <EventTrigger RoutedEvent="FrameworkElement.Loaded">
+                <BeginStoryboard>
+                    <Storyboard>
+                        <DoubleAnimation Storyboard.TargetProperty="(UIElement.Opacity)" From="0.0" To="1.0" Duration="0:0:2" />
+                    </Storyboard>
+                </BeginStoryboard>
+            </EventTrigger>
+        </Grid.Triggers>
+        <Grid.RenderTransform>
+            <ScaleTransform ScaleY="1"/>
+        </Grid.RenderTransform>
+    </Grid>
+</Window>
