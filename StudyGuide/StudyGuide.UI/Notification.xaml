@@ -26,8 +26,8 @@ AllowsTransparency="True" Topmost="True" Background="#FF90E4A8">
             <RowDefinition />
         </Grid.RowDefinitions>
         <TextBlock Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center">Time to study!</TextBlock>
-        <TextBlock Grid.Row="1" Margin="5 0" HorizontalAlignment="Center" VerticalAlignment="Center">Programming</TextBlock>
-        <TextBlock Grid.Row="1" Grid.Column="1" Margin="5 0" HorizontalAlignment="Center" VerticalAlignment="Center">Group project</TextBlock>
+        <TextBlock x:Name="Subject_Name" Grid.Row="1" Margin="5 0" HorizontalAlignment="Center" VerticalAlignment="Center">Programming</TextBlock>
+        <TextBlock x:Name="WorkType_Name" Grid.Row="1" Grid.Column="1" Margin="5 0" HorizontalAlignment="Center" VerticalAlignment="Center">Group project</TextBlock>
         <Button x:Name="PomodoroButton" Grid.Row="2" Margin="10 20" Background="#FF0A8B2E" Click="PomodoroButton_Click">Start Pomodoro</Button>
         <Button x:Name="FlashCardsButton" Grid.Row="2" Grid.Column="1" Margin="10 20" Background="#FF0A8B2E" Click="FlashCardsButton_Click">Revise with flash cards</Button>
         <Button x:Name="CloseButton" Grid.Row="3" Grid.ColumnSpan="2" Margin="50 10" Background="#FF801616" Click="CloseButton_Click">Finish studying</Button>

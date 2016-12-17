@@ -16,23 +16,14 @@ using System.Windows.Shapes;
 namespace StudyGuide.UI
 {
     /// <summary>
-    /// Логика взаимодействия для Deadline.xaml
+    /// Логика взаимодействия для FlashCardsList.xaml
     /// </summary>
-    public partial class Deadline : Window
+    public partial class FlashCardsList : Window
     {
-        ScheduleViewModel schedule;
-        public Deadline(ScheduleViewModel s)
+        public FlashCardsList(ScheduleViewModel s)
         {
             InitializeComponent();
-            SubjectText.Text = s.Subject;
-            TypeText.Text = s.WorkType;
-            schedule = s;
-        }
-
-        private void Button_CardList_Click(object sender, RoutedEventArgs e)
-        {
-            var fc = new FlashCardsList(schedule);
-            fc.Show();
+            flashcardsDataGrid.ItemsSource = Factory.Default.GetFlashCardsRepo().AllFlashCards(s);
         }
     }
 }

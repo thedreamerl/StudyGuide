@@ -1,4 +1,5 @@
-﻿using System;
+﻿using StudyGuide.Logic.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -25,7 +26,7 @@ namespace StudyGuide.UI
         TimeSpan temp;
         bool b = true;
 
-        public Pomodoro(int minutesForWork, int minutesForRest)
+        public Pomodoro(int minutesForWork, int minutesForRest, IEnumerable<TaskViewModel> tasks)
         {
             InitializeComponent();
             mw = new TimeSpan(0, minutesForWork, 0);
@@ -75,7 +76,7 @@ namespace StudyGuide.UI
 
         private void doneButton_Click(object sender, RoutedEventArgs e)
         {
-            // to be edited... 
+            this.Close();
         }
     }
 }

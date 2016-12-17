@@ -19,6 +19,7 @@ using System.Windows.Threading;
 using System.Globalization;
 using StudyGuide.Logic;
 using StudyGuide.Logic.Models;
+using StudyGuide.Logic.EntityRepos;
 
 namespace StudyGuide.UI
 {
@@ -35,6 +36,12 @@ namespace StudyGuide.UI
             Factory.Default.GetScheduleRepo().UpdateList += UpdateListSource;
             UpdateTodayPlan();
             Factory.Default.GetStudyPlanRepo().AddEvent += UpdateTodayPlan;
+            NotificationRepo.Notify += ShowNotificationWindow;
+        }
+        private void ShowNotificationWindow(StudyPlanViewModel s, IEnumerable<TaskViewModel> tasks)
+        {
+            Notification n = new Notification(s, tasks);
+            n.Show();
         }
         private void UpdateListSource()
         {
@@ -52,10 +59,20 @@ namespace StudyGuide.UI
             timer.Tick += tickEvent;
             timer.Start(); 
         }
-
+        int _previousMinute = -1; // ++++++ 
+        int _previousDay = -1;
         private void tickEvent(object sender, EventArgs e)
         {
-
+            if (DateTime.Now.Minute != _previousMinute)
+            {
+                _previousMinute = DateTime.Now.Minute;
+                NotificationRepo.CheckStudyPlans();
+            }
+            if (DateTime.Now.Day != _previousDay)
+            {
+                _previousDay = DateTime.Now.Day;
+                UpdateTodayPlan();
+            }
             timeNow.Text = DateTime.Now.ToString("T");
             dayNow.Text = DateTime.Now.ToString("D",CultureInfo.CreateSpecificCulture("en-US"));
         }

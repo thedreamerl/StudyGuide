@@ -1,4 +1,5 @@
-﻿using System;
+﻿using StudyGuide.Logic.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,8 +21,12 @@ namespace StudyGuide.UI
     /// </summary> 
     public partial class Notification : Window
     {
-        public Notification()
+        IEnumerable<TaskViewModel> _tasks;
+        public Notification(StudyPlanViewModel s, IEnumerable<TaskViewModel> tasks)
         {
+            Subject_Name.Text = s.Subject;
+            WorkType_Name.Text = s.WorkType;
+            _tasks = tasks;
             InitializeComponent();
             Dispatcher.BeginInvoke(DispatcherPriority.ApplicationIdle, new Action(() =>
             {
@@ -37,7 +42,10 @@ namespace StudyGuide.UI
 
         private void PomodoroButton_Click(object sender, RoutedEventArgs e)
         {
-
+            this.Hide();
+            var pomodoro = new Pomodoro(15, 5, _tasks);
+            pomodoro.Show();
+            this.Show();
         }
 
         private void FlashCardsButton_Click(object sender, RoutedEventArgs e)
@@ -47,7 +55,7 @@ namespace StudyGuide.UI
 
         private void CloseButton_Click(object sender, RoutedEventArgs e)
         {
-
+            this.Close();
         }
     }
 }

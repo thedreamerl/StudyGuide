@@ -47,7 +47,7 @@
             </Grid.ColumnDefinitions>
             <DataGrid x:Name="dataGrid"  Margin="10" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
             <Calendar Grid.Column="1" HorizontalAlignment="Center" Margin="10" VerticalAlignment="Top"/>
-            <Button x:Name="button" Background="PaleGoldenrod" Content="Cards list" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,10" Width="70"/>
+            <Button x:Name="Button_CardList" Background="PaleGoldenrod" Content="Cards list" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,10" Width="70" Click="Button_CardList_Click"/>
 
         </Grid>
     </Grid>
