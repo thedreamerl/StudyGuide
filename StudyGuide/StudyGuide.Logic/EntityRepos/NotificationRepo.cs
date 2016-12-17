@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace StudyGuide.Logic.EntityRepos
 {
-    class NotificationRepo
+    public class NotificationRepo
     {
 
-        public static event Action<StudyPlanViewModel> Notify;
+        public static event Action<StudyPlanViewModel, IEnumerable<TaskViewModel>> Notify;
         public static void CheckStudyPlans()
         {
             var studyPlan = Factory.Default.GetStudyPlanRepo().GetStudyPlanToDo();
@@ -18,7 +18,8 @@ namespace StudyGuide.Logic.EntityRepos
             {
                 foreach (var s in studyPlan)
                 {
-                    Notify?.Invoke(s);
+                    var tasks = Factory.Default.GetTasksRepo().ShowAll(s.Begin, new ScheduleViewModel { Subject = s.Subject, WorkType = s.WorkType });
+                    Notify?.Invoke(s,tasks);
                 }
             }
         }

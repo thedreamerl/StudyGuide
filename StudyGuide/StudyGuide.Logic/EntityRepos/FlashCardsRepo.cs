@@ -16,9 +16,9 @@ namespace StudyGuide.Logic.EntityRepos
         {
            using (var c = new Context())
             {
-                if (c.Flashards.FirstOrDefault(x => x.Term == card.Term && x.Definition == card.Definition && x.ScheduleID.SubjectID.Name == schedule.Subject && x.ScheduleID.WorkTypeID.Name == schedule.WorkType) != null)
+                if (c.FlashCards.FirstOrDefault(x => x.Term == card.Term && x.Definition == card.Definition && x.ScheduleID.SubjectID.Name == schedule.Subject && x.ScheduleID.WorkTypeID.Name == schedule.WorkType) != null)
                     throw new ArgumentException("Similar card has been already added");
-                c.Flashards.Add(new FlashCards
+                c.FlashCards.Add(new FlashCards
                 {
                     Term = card.Term,
                     Definition = card.Definition,
@@ -32,9 +32,9 @@ namespace StudyGuide.Logic.EntityRepos
         {
             using (var c = new Context())
             {
-                c.Flashards.FirstOrDefault(x => x.Term == card.Term && x.Definition == card.Definition && x.ScheduleID.SubjectID.Name == schedule.Subject && x.ScheduleID.WorkTypeID.Name == schedule.WorkType).Level += 1;
+                c.FlashCards.FirstOrDefault(x => x.Term == card.Term && x.Definition == card.Definition && x.ScheduleID.SubjectID.Name == schedule.Subject && x.ScheduleID.WorkTypeID.Name == schedule.WorkType).Level += 1;
                 c.SaveChanges();
-                 if (c.Flashards.FirstOrDefault(x => x.Term == card.Term && x.Definition == card.Definition && x.ScheduleID.SubjectID.Name == schedule.Subject && x.ScheduleID.WorkTypeID.Name == schedule.WorkType).Level == 4)
+                 if (c.FlashCards.FirstOrDefault(x => x.Term == card.Term && x.Definition == card.Definition && x.ScheduleID.SubjectID.Name == schedule.Subject && x.ScheduleID.WorkTypeID.Name == schedule.WorkType).Level == 4)
                 {
                     ShowMessgae?.Invoke("Congrats! You've learned this card!");
                     DeleteCard();
@@ -47,10 +47,10 @@ namespace StudyGuide.Logic.EntityRepos
         {
             using (var c = new Context())
             {
-                var result = (from s in c.Flashards
+                var result = (from s in c.FlashCards
                               where s.Level == 4
                               select s).ToList();
-                c.Flashards.RemoveRange(result);
+                c.FlashCards.RemoveRange(result);
             }
         }
     }

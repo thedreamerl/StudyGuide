@@ -10,7 +10,5 @@ namespace StudyGuide.Logic.Models
     {
         public string Term { get; set; }
         public string Definition { get; set; }
-        public int Level { get; set; }
-        public TimeSpan RepeatInterval { get; set; }
     }
 }

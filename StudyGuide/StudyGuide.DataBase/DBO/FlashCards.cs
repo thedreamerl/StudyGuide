@@ -6,13 +6,12 @@ using System.Threading.Tasks;
 
 namespace StudyGuide.DataBase.DBO
 {
-   public class FlashCards
+    public class FlashCards
     {
         public int ID { get; set; }
         public string Term { get; set; }
         public string Definition { get; set; }
         public Schedule ScheduleID { get; set; }
         public int Level { get; set; }
-        public TimeSpan RepeatInterval { get; set; }
     }
 }
