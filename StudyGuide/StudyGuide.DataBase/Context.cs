@@ -10,7 +10,7 @@ namespace StudyGuide.DataBase
 {
    public class Context: DbContext
     {
-        public DbSet<FlashCards> Flashards{ get; set; }
+        public DbSet<FlashCards> FlashCards{ get; set; }
         public DbSet<Schedule> Schedule { get; set; }
         public DbSet<StudyPlan> StudyPlan { get; set; }
         public DbSet<Subject> Subjects { get; set; }
