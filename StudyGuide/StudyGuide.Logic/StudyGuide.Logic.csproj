@@ -55,6 +55,7 @@
   <ItemGroup>
     <Compile Include="DTO\TranslatingData.cs" />
     <Compile Include="EntityRepos\FlashCardsRepo.cs" />
+    <Compile Include="EntityRepos\NotificationRepo.cs" />
     <Compile Include="EntityRepos\ScheduleRepo.cs" />
     <Compile Include="EntityRepos\StudyPlanRepo.cs" />
     <Compile Include="EntityRepos\SubjectRepo.cs" />
