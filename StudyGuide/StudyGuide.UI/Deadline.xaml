@@ -9,46 +9,34 @@
     <Window.Resources>
         <Style TargetType="TextBlock">
             <Setter Property="FontFamily" Value="Tempus Sans ITC"/>
-            <Setter Property="FontSize" Value="10"/>
+            <Setter Property="FontSize" Value="18"/>
         </Style>
     </Window.Resources>
     <Grid Background="LightGoldenrodYellow">
         <Grid.RowDefinitions>
-            <RowDefinition Height="0.7*"/>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="4*"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition/>
         </Grid.RowDefinitions>
 
+        
         <Grid Grid.Row="0">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
-            <TextBlock x:Name="DateTime" Grid.Column="2" Margin="0,5,0,-5"></TextBlock>
-            <TextBlock Grid.Column="0" HorizontalAlignment="Center" Margin="5" FontSize="20">Subject</TextBlock>
-            <TextBlock Grid.Column="1" HorizontalAlignment="Center" Margin="64,5,60,5" FontSize="20">Type</TextBlock>
-        </Grid>
-        <Grid Grid.Row="1">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
-            <ProgressBar Height="29" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" Width="144"/>
-            <TextBlock x:Name="SubjectText" HorizontalAlignment="Center" Grid.Column="0" Margin="56,10,52,10" >Proga</TextBlock>
-            <TextBlock x:Name="TypeText" Grid.Column="1" HorizontalAlignment="Center" Margin="23,10,10,10"  Width="131">Team project</TextBlock>
+            <TextBlock x:Name="SubjectText" HorizontalAlignment="Center" Grid.Column="0" VerticalAlignment="Center" Margin="30 0" >Programming</TextBlock>
+            <TextBlock x:Name="TypeText" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="30 0">Team project</TextBlock>
         </Grid>
 
-        <Grid Grid.Row="2" Margin="0,5,0,-5">
+        <Grid Grid.Row="1" Margin="0,5,0,-5">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="3*"/>
                 <ColumnDefinition Width="3*"/>
             </Grid.ColumnDefinitions>
-            <DataGrid x:Name="dataGrid"  Margin="10" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
+            <ListBox x:Name="StudyPlanList" Margin="10" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"></ListBox>
             <Calendar Grid.Column="1" HorizontalAlignment="Center" Margin="10" VerticalAlignment="Top"/>
-            <Button x:Name="Button_CardList" Background="PaleGoldenrod" Content="Cards list" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,10" Width="70" Click="Button_CardList_Click"/>
-
+            <Button x:Name="Button_CardList" Background="PaleGoldenrod" Content="Cards list" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,40" Width="110" Click="Button_CardList_Click"/>
+            <Button x:Name="Button_Delete" Background="PaleGoldenrod" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,10" Width="110" Click="Button_Delete_Click">Delete deadline</Button>
         </Grid>
     </Grid>
 </Window>

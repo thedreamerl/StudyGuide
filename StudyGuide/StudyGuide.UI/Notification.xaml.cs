@@ -1,4 +1,5 @@
-﻿using StudyGuide.Logic.Models;
+﻿using StudyGuide.Logic;
+using StudyGuide.Logic.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,13 +22,15 @@ namespace StudyGuide.UI
     /// </summary> 
     public partial class Notification : Window
     {
-        IEnumerable<TaskViewModel> _tasks;
-        public Notification(StudyPlanViewModel s, IEnumerable<TaskViewModel> tasks)
+        IEnumerable<TaskViewModel> tasks;
+        StudyPlanViewModel studyPlan;
+        public Notification(StudyPlanViewModel s, IEnumerable<TaskViewModel> t)
         {
+            InitializeComponent();
             Subject_Name.Text = s.Subject;
             WorkType_Name.Text = s.WorkType;
-            _tasks = tasks;
-            InitializeComponent();
+            tasks = t;
+            studyPlan = s;
             Dispatcher.BeginInvoke(DispatcherPriority.ApplicationIdle, new Action(() =>
             {
                 var workingArea = System.Windows.Forms.Screen.PrimaryScreen.WorkingArea;
@@ -43,14 +46,27 @@ namespace StudyGuide.UI
         private void PomodoroButton_Click(object sender, RoutedEventArgs e)
         {
             this.Hide();
-            var pomodoro = new Pomodoro(15, 5, _tasks);
-            pomodoro.Show();
+            var pomodoro = new Pomodoro(15, 5, tasks);
+            pomodoro.ShowDialog();
             this.Show();
         }
 
         private void FlashCardsButton_Click(object sender, RoutedEventArgs e)
         {
-
+            var cards = Factory.Default.GetFlashCardsRepo().AllFlashCards(new ScheduleViewModel { Subject = studyPlan.Subject, WorkType = studyPlan.WorkType });
+            if (cards.Count() == 0)
+            {
+                MessageBox.Show("There are no cards to revise", "Error");
+                FlashCardsButton.IsEnabled = false;
+                return;
+            }
+            foreach (var card in cards)
+            {
+                FlashCardShow fc = new FlashCardShow(card, new ScheduleViewModel { Subject = studyPlan.Subject, WorkType = studyPlan.WorkType });
+                this.Hide();
+                fc.ShowDialog();
+            }
+            this.Show();
         }
 
         private void CloseButton_Click(object sender, RoutedEventArgs e)

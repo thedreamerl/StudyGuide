@@ -5,16 +5,31 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:StudyGuide.UI"
         mc:Ignorable="d"
-        Title="Pomodoro" Height="300" Width="300" Background="#8B0000" Topmost="True" ResizeMode="NoResize" WindowStyle="None">
+        Title="Pomodoro" Height="300" Width="500" Background="#8B0000" Topmost="True" ResizeMode="NoResize" WindowStyle="None">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="2*" />
             <RowDefinition Height="10*" />
             <RowDefinition Height="2*" />
         </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
         <TextBlock Name="taskTextBlock" HorizontalAlignment="Left" FontSize="14" VerticalAlignment="Center" Margin="10,0,0,0">Your task for now is</TextBlock>
         <TextBlock Name="workorrestTextBlock" Grid.Row="1" HorizontalAlignment="Center" FontWeight="Bold" VerticalAlignment="Top" FontSize="20" Margin="0 10 0 0">Work!</TextBlock>
         <TextBlock Name="Timer" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="60">15:48</TextBlock>
-        <Button Grid.Row="2" Name="doneButton" HorizontalAlignment="Center" VerticalAlignment="Center" Width="80" Height="35" Background="#B22222" Content="Done!"></Button>
+        <Button Grid.Row="2" Name="doneButton" HorizontalAlignment="Center" VerticalAlignment="Center" Width="80" Height="35" Background="#B22222" Content="Done!" Click="doneButton_Click"></Button>
+        <TextBlock Grid.Column="1" HorizontalAlignment="Left" FontSize="14" VerticalAlignment="Center" Margin="10,0,0,0">Your tasks are:</TextBlock>
+        <Button x:Name="DoneTask" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,10,0" Background="#B22222" Click="DoneTask_Click">Task is done</Button>
+        <ListBox x:Name="TasksList" Grid.Column="1" Grid.RowSpan="2" Grid.Row="1" Background="#8B0000">
+            <ListBox.ItemTemplate>
+                <DataTemplate DataType="local:TaskViewModel">
+                    <Grid Margin="0 5">
+                        <TextBlock Text="{Binding Name}"/>
+                    </Grid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
     </Grid>
 </Window>

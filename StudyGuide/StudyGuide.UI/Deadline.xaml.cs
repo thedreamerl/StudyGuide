@@ -1,4 +1,5 @@
-﻿using StudyGuide.Logic.Models;
+﻿using StudyGuide.Logic;
+using StudyGuide.Logic.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,12 +28,26 @@ namespace StudyGuide.UI
             SubjectText.Text = s.Subject;
             TypeText.Text = s.WorkType;
             schedule = s;
+            var studyPlans = Factory.Default.GetStudyPlanRepo().ShowAll(schedule);
+            foreach (var sp in studyPlans)
+            {
+                StudyPlanList.Items.Add(sp.Begin.ToLongTimeString());
+                var tasks = Factory.Default.GetTasksRepo().ShowAll(sp.Begin, schedule);
+                foreach (var task in tasks)
+                {
+                    StudyPlanList.Items.Add(task.Name);
+                }
+            }
         }
 
         private void Button_CardList_Click(object sender, RoutedEventArgs e)
         {
             var fc = new FlashCardsList(schedule);
             fc.Show();
+        }
+        private void Button_Delete_Click(object sender, RoutedEventArgs e)
+        {
+            // сделать функцию для делита 
         }
     }
 }

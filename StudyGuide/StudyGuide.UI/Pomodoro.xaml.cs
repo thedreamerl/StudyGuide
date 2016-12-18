@@ -29,10 +29,20 @@ namespace StudyGuide.UI
         public Pomodoro(int minutesForWork, int minutesForRest, IEnumerable<TaskViewModel> tasks)
         {
             InitializeComponent();
+            TasksList.ItemsSource = tasks;
             mw = new TimeSpan(0, minutesForWork, 0);
             mr = new TimeSpan(0, minutesForRest, 0);
             temp = mw;
             StartClock();
+            Dispatcher.BeginInvoke(DispatcherPriority.ApplicationIdle, new Action(() =>
+            {
+                var workingArea = System.Windows.Forms.Screen.PrimaryScreen.WorkingArea;
+                var transform = PresentationSource.FromVisual(this).CompositionTarget.TransformFromDevice;
+                var corner = transform.Transform(new Point(workingArea.Right, workingArea.Bottom));
+
+                this.Left = corner.X - this.ActualWidth - 100;
+                this.Top = corner.Y - this.ActualHeight;
+            }));
         }
         private void StartClock()
         {
@@ -77,6 +87,11 @@ namespace StudyGuide.UI
         private void doneButton_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+        private void DoneTask_Click(object sender, RoutedEventArgs e)
+        {
+            if (TasksList.SelectedItem != null)
+                TasksList.Items.Remove(TasksList.SelectedItem);
         }
     }
 }

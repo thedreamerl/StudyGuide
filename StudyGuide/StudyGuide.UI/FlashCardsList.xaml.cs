@@ -21,10 +21,26 @@ namespace StudyGuide.UI
     /// </summary>
     public partial class FlashCardsList : Window
     {
+        ScheduleViewModel schedule;
         public FlashCardsList(ScheduleViewModel s)
         {
             InitializeComponent();
-            flashcardsDataGrid.ItemsSource = Factory.Default.GetFlashCardsRepo().AllFlashCards(s);
+            schedule = s;
+            var cards = Factory.Default.GetFlashCardsRepo().AllFlashCards(s);
+            if (cards.Count() == 0)
+            {
+                MessageBoxResult result = MessageBox.Show("There are no flash cards yet, do you want create some?", "Attention", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                if (result == MessageBoxResult.Yes)
+                {
+                    FlashCards fc = new FlashCards(schedule);
+                    fc.ShowDialog();
+                    UpdateTable();
+                }
+            }
+        }
+        private void UpdateTable()
+        {
+            flashcardsDataGrid.ItemsSource = Factory.Default.GetFlashCardsRepo().AllFlashCards(schedule);
         }
     }
 }

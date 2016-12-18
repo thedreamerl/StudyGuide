@@ -10,7 +10,7 @@
         <TextBlock x:Name="textblock1" Margin="50,50,50,70"/>
         <Button x:Name="checkButton" Margin="200,250,200,20" Click="Button_Click" BorderThickness="0">Check
         </Button>
-        <Button x:Name="wrongButton" Margin="50,250,0,20" HorizontalAlignment="Left" Width="100" BorderThickness="0" Content="Wrong"/>
-        <Button x:Name="rightButton" Margin="50,250,50,20" HorizontalAlignment="Right" Width="100"  BorderThickness="0" Content="Right"/>
+        <Button x:Name="wrongButton" Margin="50,250,0,20" HorizontalAlignment="Left" Width="100" BorderThickness="0" Content="Wrong" Click="wrongButton_Click"/>
+        <Button x:Name="rightButton" Margin="50,250,50,20" HorizontalAlignment="Right" Width="100"  BorderThickness="0" Content="Right" Click="rightButton_Click"/>
     </Grid>
 </Window>

@@ -1,4 +1,5 @@
-﻿using StudyGuide.Logic.Models;
+﻿using StudyGuide.Logic;
+using StudyGuide.Logic.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,11 +22,13 @@ namespace StudyGuide.UI
     public partial class FlashCardShow : Window
     {
         FlashCardViewModel flashCard;
-        public FlashCardShow(FlashCardViewModel fc)
+        ScheduleViewModel schedule;
+        public FlashCardShow(FlashCardViewModel fc, ScheduleViewModel s)
         {           
-             flashCard = fc;
-            textblock1.Text = flashCard.Term;
             InitializeComponent();
+            flashCard = fc;
+            schedule = s;
+            textblock1.Text = flashCard.Term;
             textblock1.FontSize = 20;
             wrongButton.Visibility = Visibility.Hidden;
             rightButton.Visibility = Visibility.Hidden;
@@ -39,6 +42,17 @@ namespace StudyGuide.UI
             rightButton.Visibility = Visibility.Visible;
             checkButton.Visibility = Visibility.Hidden;
 
+        }
+
+        private void wrongButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void rightButton_Click(object sender, RoutedEventArgs e)
+        {
+            Factory.Default.GetFlashCardsRepo().LevelUp(flashCard, schedule);
+            this.Close();
         }
     }
 
