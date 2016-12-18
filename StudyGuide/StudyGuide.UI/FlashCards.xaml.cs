@@ -60,7 +60,7 @@ namespace StudyGuide.UI
             createButton.Visibility = Visibility.Visible;
         }
 
-        private void loadButton_Click(object sender, RoutedEventArgs e)
+        private async void loadButton_Click(object sender, RoutedEventArgs e)
         {
             if (resultTextBox.Text.Length != 0 && isEdited)
             {
@@ -71,9 +71,9 @@ namespace StudyGuide.UI
             try
             {
                 if ((bool)langRadioButton.IsChecked)
-                    resultTextBox.Text = NetRepository.Translate(headerTextBox.Text);
+                    resultTextBox.Text = await NetRepository.Translate(headerTextBox.Text);
                 else
-                    resultTextBox.Text = NetRepository.GetDefinition(headerTextBox.Text);
+                    resultTextBox.Text = await NetRepository.GetDefinition(headerTextBox.Text);
             }
             catch (Exception ex)
             {
