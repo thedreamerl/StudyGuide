@@ -56,9 +56,9 @@ namespace StudyGuide.UI
             this.Show();
         }
 
-        private void FlashCardsButton_Click(object sender, RoutedEventArgs e)
+        private async void FlashCardsButton_Click(object sender, RoutedEventArgs e)
         {
-            var cards = Factory.Default.GetFlashCardsRepo().AllFlashCards(new ScheduleViewModel { Subject = studyPlan.Subject, WorkType = studyPlan.WorkType });
+            var cards = await Factory.Default.GetFlashCardsRepo().AllFlashCards(new ScheduleViewModel { Subject = studyPlan.Subject, WorkType = studyPlan.WorkType });
             if (cards.Count() == 0)
             {
                 MessageBox.Show("There are no cards to revise", "Error");

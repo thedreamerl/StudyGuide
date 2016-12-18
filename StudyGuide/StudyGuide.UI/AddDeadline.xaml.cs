@@ -72,7 +72,7 @@ namespace StudyGuide.UI
             HelperText.Visibility = Visibility.Visible;
             Days.DisplayDateEnd = Deadline.SelectedDate;
         }
-        private void Next_Click(object sender, RoutedEventArgs e)
+        private async void Next_Click(object sender, RoutedEventArgs e)
         {
             if (Subjects.SelectedIndex == -1)
             {
@@ -102,7 +102,7 @@ namespace StudyGuide.UI
             };
             try
             {
-                Factory.Default.GetScheduleRepo().AddNew(Schedule);
+                await Factory.Default.GetScheduleRepo().AddNew(Schedule);
             }
             catch (ArgumentException ex)
             {

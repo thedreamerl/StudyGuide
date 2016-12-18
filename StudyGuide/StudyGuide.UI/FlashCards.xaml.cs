@@ -87,11 +87,11 @@ namespace StudyGuide.UI
             isEdited = true;
         }
 
-        private void createButton_Click(object sender, RoutedEventArgs e)
+        private async void createButton_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                Factory.Default.GetFlashCardsRepo().AddFlashCard(new FlashCardViewModel
+               await Factory.Default.GetFlashCardsRepo().AddFlashCard(new FlashCardViewModel
                 {
                     Term = headerTextBox.Text,
                     Definition = resultTextBox.Text

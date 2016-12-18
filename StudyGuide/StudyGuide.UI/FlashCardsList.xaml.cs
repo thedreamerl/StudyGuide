@@ -30,15 +30,19 @@ namespace StudyGuide.UI
             UpdateTable();
             Factory.Default.GetFlashCardsRepo().ShowMessgae += Message;
         }
+        private async void UpdateFlashCardList()
+        {
+            cards = (List<FlashCardViewModel>)await Factory.Default.GetFlashCardsRepo().AllFlashCards(schedule);
+            flashcardsDataGrid.ItemsSource = cards;
+        }
         private void Message(string m)
         {
             MessageBox.Show(m);
-            cards = (List<FlashCardViewModel>)Factory.Default.GetFlashCardsRepo().AllFlashCards(schedule);
-            flashcardsDataGrid.ItemsSource = cards;
+            UpdateFlashCardList();
         }
-        private void UpdateTable()
+        private async void UpdateTable()
         {
-            cards = (List<FlashCardViewModel>)Factory.Default.GetFlashCardsRepo().AllFlashCards(schedule);
+            cards = (List<FlashCardViewModel>) await Factory.Default.GetFlashCardsRepo().AllFlashCards(schedule);
             if (cards.Count() == 0)
             {
                 MessageBoxResult result = MessageBox.Show("There are no flash cards yet, do you want create some?", "Attention", MessageBoxButton.YesNo, MessageBoxImage.Question);
@@ -48,7 +52,8 @@ namespace StudyGuide.UI
                     fc.ShowDialog();
                 }
             }
-            flashcardsDataGrid.ItemsSource = cards;
+            UpdateFlashCardList();
+
         }
 
         private void Revise_Button_Click(object sender, RoutedEventArgs e)
@@ -60,6 +65,7 @@ namespace StudyGuide.UI
                 this.Hide();
                 fc.ShowDialog();
             }
+            UpdateFlashCardList();
             this.Show();
         }
     }

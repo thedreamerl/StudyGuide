@@ -43,9 +43,9 @@ namespace StudyGuide.UI
             Notification n = new Notification(s, tasks);
             n.Show();
         }
-        private void UpdateListSource()
+        private async void UpdateListSource()
         {
-            listBoxDeadlines.ItemsSource = Factory.Default.GetScheduleRepo().ShowAll();
+            listBoxDeadlines.ItemsSource = await Factory.Default.GetScheduleRepo().ShowAll();
         }
         private void UpdateTodayPlan()
         {

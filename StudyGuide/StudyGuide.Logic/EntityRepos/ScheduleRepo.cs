@@ -3,6 +3,7 @@ using StudyGuide.DataBase.DBO;
 using StudyGuide.Logic.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,11 +13,11 @@ namespace StudyGuide.Logic.EntityRepos
     public class ScheduleRepo
     {
         public event Action UpdateList;
-        public void AddNew(ScheduleViewModel el)
+        public async Task AddNew(ScheduleViewModel el)
         {
-            using (var c = new Context())
+           using (var c = new Context())
             {
-                if (c.Schedule.FirstOrDefault(x => x.SubjectID.Name == el.Subject && x.WorkTypeID.Name == el.WorkType) != null)
+                if (await c.Schedule.FirstOrDefaultAsync(x => x.SubjectID.Name == el.Subject && x.WorkTypeID.Name == el.WorkType) != null)
                     throw new ArgumentException("Deadline for this subject and worktype does already exists");
 
                 c.Schedule.Add(new Schedule
@@ -25,25 +26,28 @@ namespace StudyGuide.Logic.EntityRepos
                     WorkTypeID = c.WorkType.First(x => x.Name == el.WorkType),
                     Deadline = el.Deadline
                 });
-                c.SaveChanges();
+                await c.SaveChangesAsync();
             }
             UpdateList?.Invoke();
         }
 
-        public IEnumerable<ScheduleViewModel> ShowAll()
+        public Task<IEnumerable<ScheduleViewModel>> ShowAll()
         {
-            using (var c = new Context())
+            return Task.Run(() =>
             {
-                var result = (from s in c.Schedule
-                              orderby s.Deadline
-                              select new ScheduleViewModel
-                              {
-                                  Subject = s.SubjectID.Name,
-                                  WorkType = s.WorkTypeID.Name,
-                                  Deadline = s.Deadline
-                              }).ToList();
-                return result;
-            }
+                using (var c = new Context())
+                {
+                    var result = (from s in c.Schedule
+                                  orderby s.Deadline
+                                  select new ScheduleViewModel
+                                  {
+                                      Subject = s.SubjectID.Name,
+                                      WorkType = s.WorkTypeID.Name,
+                                      Deadline = s.Deadline
+                                  }).ToList();
+                    return (IEnumerable<ScheduleViewModel>)result;
+                }
+            });
         }
         public void DeleteSchedule(ScheduleViewModel s)
         {
@@ -61,6 +65,7 @@ namespace StudyGuide.Logic.EntityRepos
                 var temp2 = c.Schedule.First(x => x.SubjectID.Name == s.Subject && x.WorkTypeID.Name == s.WorkType);
                 c.Schedule.Remove(temp2);
                 c.SaveChanges();
+                UpdateList?.Invoke();
             }
         }
     }
