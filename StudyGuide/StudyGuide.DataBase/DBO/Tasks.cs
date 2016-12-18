@@ -11,6 +11,5 @@ namespace StudyGuide.DataBase.DBO
         public int ID { get; set; }
         public string Name { get; set; }
         public StudyPlan StudyPlan { get; set; }
-        public bool Status { get; set; }
     }
 }
