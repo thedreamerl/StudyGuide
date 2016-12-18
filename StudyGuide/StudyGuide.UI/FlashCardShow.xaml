@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:StudyGuide.UI"
         mc:Ignorable="d"
+        Icon="Icon/courses-icon-10.ico"
         Title="FlashCardShow" Height="350" Width="525">
     <Grid>
         <TextBlock x:Name="textblock1" Margin="50,50,50,70" TextWrapping="Wrap"/>

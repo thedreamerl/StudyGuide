@@ -16,10 +16,11 @@
     </Window.Resources>
     <Grid Background="LightCyan">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="2*"/>
-            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="0*"/>
+            <ColumnDefinition Width="237*"/>
+            <ColumnDefinition Width="355*"/>
         </Grid.ColumnDefinitions>
-        <tb:TaskbarIcon Name="taskBarIcon" IconSource="Icon/courses-icon-10.ico" Visibility="Hidden" >
+        <tb:TaskbarIcon Name="taskBarIcon" IconSource="Icon/courses-icon-10.ico" Visibility="Hidden" Grid.ColumnSpan="2" >
             <tb:TaskbarIcon.ContextMenu>
                 <ContextMenu>
                     <MenuItem Header="Restore" Click="MenuItemRestore_Click"/>
@@ -27,7 +28,7 @@
                 </ContextMenu>
             </tb:TaskbarIcon.ContextMenu>
         </tb:TaskbarIcon>
-        <Grid Grid.Column="0">
+        <Grid Grid.Column="0" Grid.ColumnSpan="2">
             <Grid.RowDefinitions>
                 <RowDefinition Height="1*" />
                 <RowDefinition Height="2*"/>
@@ -61,7 +62,7 @@
             <Calendar HorizontalAlignment="Center" Margin="0,25,0,0"  Grid.Row="2" VerticalAlignment="Top"/>
             <TextBlock x:Name="Calendar" HorizontalAlignment="Center" VerticalAlignment="Top" Grid.Row="2">Calendar</TextBlock>
         </Grid>
-        <Grid Grid.Column="1">
+        <Grid Grid.Column="2">
             <Grid.RowDefinitions>
                 <RowDefinition Height='50'/>
                 <RowDefinition/>

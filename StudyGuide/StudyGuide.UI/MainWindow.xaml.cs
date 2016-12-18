@@ -113,6 +113,7 @@ namespace StudyGuide.UI
             {
                 e.Cancel = true;
                 Hide();
+                taskBarIcon.Visibility = Visibility.Visible;
                 if (_firstTimeHint)
                 {
                     taskBarIcon.ShowBalloonTip("Study Guide", "The application is still running",
