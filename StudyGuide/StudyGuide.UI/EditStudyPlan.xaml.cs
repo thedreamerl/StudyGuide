@@ -80,7 +80,7 @@ namespace StudyGuide.UI
             {
                 list.Add(item.ToString());
             }
-            Factory.Default.GetTasksRepo().AddNewTasks(list, Date, Schedule);
+            Factory.Default.GetTasksRepo().AddNewTasks(list, NewDate, Schedule);
             MessageBox.Show("Study plan item has been added successfully!");
             this.Close();
         }

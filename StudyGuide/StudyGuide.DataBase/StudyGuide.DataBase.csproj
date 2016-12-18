@@ -51,9 +51,9 @@
   <ItemGroup>
     <Compile Include="Context.cs" />
     <Compile Include="DBO\FlashCards.cs" />
-    <Compile Include="Migrations\201612180915419_initial.cs" />
-    <Compile Include="Migrations\201612180915419_initial.Designer.cs">
-      <DependentUpon>201612180915419_initial.cs</DependentUpon>
+    <Compile Include="Migrations\201612180930359_Initial.cs" />
+    <Compile Include="Migrations\201612180930359_Initial.Designer.cs">
+      <DependentUpon>201612180930359_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -68,8 +68,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201612180915419_initial.resx">
-      <DependentUpon>201612180915419_initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201612180930359_Initial.resx">
+      <DependentUpon>201612180930359_Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
