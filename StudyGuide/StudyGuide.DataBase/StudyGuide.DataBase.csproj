@@ -51,21 +51,9 @@
   <ItemGroup>
     <Compile Include="Context.cs" />
     <Compile Include="DBO\FlashCards.cs" />
-    <Compile Include="Migrations\201612040901053_Initial.cs" />
-    <Compile Include="Migrations\201612040901053_Initial.Designer.cs">
-      <DependentUpon>201612040901053_Initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201612040904584_Intial2.cs" />
-    <Compile Include="Migrations\201612040904584_Intial2.Designer.cs">
-      <DependentUpon>201612040904584_Intial2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201612040918264_Initial3.cs" />
-    <Compile Include="Migrations\201612040918264_Initial3.Designer.cs">
-      <DependentUpon>201612040918264_Initial3.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201612121642190_initial4.cs" />
-    <Compile Include="Migrations\201612121642190_initial4.Designer.cs">
-      <DependentUpon>201612121642190_initial4.cs</DependentUpon>
+    <Compile Include="Migrations\201612180915419_initial.cs" />
+    <Compile Include="Migrations\201612180915419_initial.Designer.cs">
+      <DependentUpon>201612180915419_initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -80,17 +68,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201612040901053_Initial.resx">
-      <DependentUpon>201612040901053_Initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201612040904584_Intial2.resx">
-      <DependentUpon>201612040904584_Intial2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201612040918264_Initial3.resx">
-      <DependentUpon>201612040918264_Initial3.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201612121642190_initial4.resx">
-      <DependentUpon>201612121642190_initial4.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201612180915419_initial.resx">
+      <DependentUpon>201612180915419_initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

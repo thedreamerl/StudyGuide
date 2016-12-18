@@ -11,6 +11,5 @@ namespace StudyGuide.DataBase.DBO
         public int ID { get; set; }
         public Schedule ScheduleID { get; set; }
         public DateTime Begin { get; set; }
-        public List<Tasks> Tasks { get; set; }
     }
 }

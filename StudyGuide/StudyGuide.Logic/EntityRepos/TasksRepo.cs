@@ -21,7 +21,6 @@ namespace StudyGuide.Logic.EntityRepos
                     temp.Add(new Tasks
                     {
                         Name = t,
-                        Status = false,
                         StudyPlan = c.StudyPlan.FirstOrDefault(x => x.Begin == studyPlan && x.ScheduleID.SubjectID.Name == schedule.Subject && x.ScheduleID.WorkTypeID.Name == schedule.WorkType)
                     });
                 }
@@ -40,7 +39,6 @@ namespace StudyGuide.Logic.EntityRepos
                               select new TaskViewModel
                               {
                                   Name = t.Name,
-                                  Status = t.Status
                               }).ToList();
                 return result;
             }
