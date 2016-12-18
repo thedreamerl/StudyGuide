@@ -66,6 +66,7 @@ namespace StudyGuide.Logic.EntityRepos
                               where s.Level == 4
                               select s).ToList();
                 c.FlashCards.RemoveRange(result);
+                c.SaveChanges();
             }
         }
     }
