@@ -90,14 +90,6 @@ namespace StudyGuide.UI
         {
             this.Close();
         }
-        private void DoneTask_Click(object sender, RoutedEventArgs e)
-        {
-            if (TasksList.SelectedItem != null)
-            {
-                var temp = TasksList.SelectedItem as TaskViewModel;
-                tasks.Remove(temp);
-                TasksList.ItemsSource = tasks;
-            }
-        }
+       
     }
 }

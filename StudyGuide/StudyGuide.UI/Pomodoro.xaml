@@ -21,7 +21,6 @@
         <TextBlock Name="Timer" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="60">15:48</TextBlock>
         <Button Grid.Row="2" Name="doneButton" HorizontalAlignment="Center" VerticalAlignment="Center" Width="80" Height="35" Background="#B22222" Content="Done!" Click="doneButton_Click"></Button>
         <TextBlock Grid.Column="1" HorizontalAlignment="Left" FontSize="14" VerticalAlignment="Center" Margin="10,0,0,0">Your tasks are:</TextBlock>
-        <Button x:Name="DoneTask" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,10,0" Background="#B22222" Click="DoneTask_Click">Task is done</Button>
         <ListBox x:Name="TasksList" Grid.Column="1" Grid.RowSpan="2" Grid.Row="1" Background="#8B0000">
             <ListBox.ItemTemplate>
                 <DataTemplate DataType="local:TaskViewModel">
