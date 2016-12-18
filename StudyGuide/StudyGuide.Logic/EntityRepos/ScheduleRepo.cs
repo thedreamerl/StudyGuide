@@ -45,5 +45,23 @@ namespace StudyGuide.Logic.EntityRepos
                 return result;
             }
         }
+        public void DeleteSchedule(ScheduleViewModel s)
+        {
+            using (var c = new Context())
+            {
+                var studyPlans = Factory.Default.GetStudyPlanRepo().ShowAll(s);
+                foreach (var p in studyPlans)
+                {
+                    Factory.Default.GetStudyPlanRepo().DeletePastStudyPlan(p);
+                }
+                var temp = from fc in c.FlashCards
+                           where fc.ScheduleID.SubjectID.Name == s.Subject && fc.ScheduleID.WorkTypeID.Name == s.WorkType
+                           select fc;
+                c.FlashCards.RemoveRange(temp);
+                var temp2 = c.Schedule.First(x => x.SubjectID.Name == s.Subject && x.WorkTypeID.Name == s.WorkType);
+                c.Schedule.Remove(temp2);
+                c.SaveChanges();
+            }
+        }
     }
 }

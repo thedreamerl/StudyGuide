@@ -20,6 +20,7 @@ namespace StudyGuide.Logic.EntityRepos
                 {
                     var tasks = Factory.Default.GetTasksRepo().ShowAll(s.Begin, new ScheduleViewModel { Subject = s.Subject, WorkType = s.WorkType });
                     Notify?.Invoke(s,tasks);
+                    Factory.Default.GetStudyPlanRepo().DeletePastStudyPlan(s);
                 }
             }
         }
