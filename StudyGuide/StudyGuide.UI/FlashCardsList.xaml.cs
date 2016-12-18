@@ -22,11 +22,16 @@ namespace StudyGuide.UI
     public partial class FlashCardsList : Window
     {
         ScheduleViewModel schedule;
+        List<FlashCardViewModel> cards;
         public FlashCardsList(ScheduleViewModel s)
         {
             InitializeComponent();
             schedule = s;
-            var cards = Factory.Default.GetFlashCardsRepo().AllFlashCards(s);
+            UpdateTable();
+        }
+        private void UpdateTable()
+        {
+            cards = (List<FlashCardViewModel>)Factory.Default.GetFlashCardsRepo().AllFlashCards(schedule);
             if (cards.Count() == 0)
             {
                 MessageBoxResult result = MessageBox.Show("There are no flash cards yet, do you want create some?", "Attention", MessageBoxButton.YesNo, MessageBoxImage.Question);
@@ -36,16 +41,19 @@ namespace StudyGuide.UI
                     fc.ShowDialog();
                 }
             }
-            UpdateTable();
-        }
-        private void UpdateTable()
-        {
-            flashcardsDataGrid.ItemsSource = Factory.Default.GetFlashCardsRepo().AllFlashCards(schedule);
+            flashcardsDataGrid.ItemsSource = cards;
         }
 
         private void Revise_Button_Click(object sender, RoutedEventArgs e)
         {
-
+            UpdateTable();
+            foreach (var card in cards)
+            {
+                FlashCardShow fc = new FlashCardShow(card, schedule);
+                this.Hide();
+                fc.ShowDialog();
+            }
+            this.Show();
         }
     }
 }
