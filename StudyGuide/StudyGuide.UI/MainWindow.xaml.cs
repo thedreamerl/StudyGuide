@@ -20,6 +20,7 @@ using System.Globalization;
 using StudyGuide.Logic;
 using StudyGuide.Logic.Models;
 using StudyGuide.Logic.EntityRepos;
+using Hardcodet.Wpf.TaskbarNotification;
 
 namespace StudyGuide.UI
 {
@@ -103,6 +104,35 @@ namespace StudyGuide.UI
                 }
                 obj = VisualTreeHelper.GetParent(obj);
             }
+        }
+        bool _finalShutdown = false;
+        bool _firstTimeHint = true;
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (!_finalShutdown)
+            {
+                e.Cancel = true;
+                Hide();
+                TaskBarIcon.Visibility = Visibility.Visible;
+                if (_firstTimeHint)
+                {
+                    TaskBarIcon.ShowBalloonTip("Personal Scheduler", "The application is still running",
+                    BalloonIcon.Info);
+                    _firstTimeHint = false;
+                }
+            }
+        }
+        private void MenuItemExit_Click(object sender, RoutedEventArgs e)
+        {
+            _finalShutdown = true;
+            TaskBarIcon.Dispose();
+            Application.Current.Shutdown();
+        }
+
+        private void MenuItemRestore_Click(object sender, RoutedEventArgs e)
+        {
+            Show();
+            TaskBarIcon.Visibility = Visibility.Hidden;
         }
     }
 }

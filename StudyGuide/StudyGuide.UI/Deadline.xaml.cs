@@ -31,7 +31,7 @@ namespace StudyGuide.UI
             var studyPlans = Factory.Default.GetStudyPlanRepo().ShowAll(schedule);
             foreach (var sp in studyPlans)
             {
-                StudyPlanList.Items.Add(sp.Begin.ToLongTimeString());
+                StudyPlanList.Items.Add(sp.Begin.ToLongDateString() + "  " + sp.Begin.ToShortTimeString());
                 var tasks = Factory.Default.GetTasksRepo().ShowAll(sp.Begin, schedule);
                 foreach (var task in tasks)
                 {

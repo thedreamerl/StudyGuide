@@ -55,9 +55,9 @@ namespace StudyGuide.UI
                 try
                 {
                     Factory.Default.GetWorkTypeRepo().AddNew(WorkTypes.Text);
-                    MessageBox.Show("Subject was successfully added!");
+                    MessageBox.Show("Work type was successfully added!");
                     WorkTypes.ItemsSource = Factory.Default.GetWorkTypeRepo().ShowAll();
-                    WorkTypes.SelectedItem = WorkTypes.Items.Count - 1;
+                    WorkTypes.SelectedIndex = WorkTypes.Items.Count - 1;
                 }
                 catch (ArgumentException ex)
                 {
