@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:StudyGuide.UI"
         mc:Ignorable="d"
+        Icon="Icon/courses-icon-10.ico"
         Title="Deadline" Height="340" Width="500">
     <Window.Resources>
         <Style TargetType="TextBlock">

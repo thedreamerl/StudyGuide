@@ -179,8 +179,9 @@
       <Name>StudyGuide.Logic</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Resource Include="Icon\courses-icon-10.png" />
+    <Resource Include="Icon\courses-icon-10.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

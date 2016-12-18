@@ -113,10 +113,9 @@ namespace StudyGuide.UI
             {
                 e.Cancel = true;
                 Hide();
-                TaskBarIcon.Visibility = Visibility.Visible;
                 if (_firstTimeHint)
                 {
-                    TaskBarIcon.ShowBalloonTip("Personal Scheduler", "The application is still running",
+                    taskBarIcon.ShowBalloonTip("Study Guide", "The application is still running",
                     BalloonIcon.Info);
                     _firstTimeHint = false;
                 }
@@ -125,14 +124,14 @@ namespace StudyGuide.UI
         private void MenuItemExit_Click(object sender, RoutedEventArgs e)
         {
             _finalShutdown = true;
-            TaskBarIcon.Dispose();
+            taskBarIcon.Dispose();
             Application.Current.Shutdown();
         }
 
         private void MenuItemRestore_Click(object sender, RoutedEventArgs e)
         {
             Show();
-            TaskBarIcon.Visibility = Visibility.Hidden;
+            taskBarIcon.Visibility = Visibility.Hidden;
         }
     }
 }
