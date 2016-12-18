@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="FlashCardShow" Height="350" Width="525">
     <Grid>
-        <TextBlock x:Name="textblock1" Margin="50,50,50,70"/>
+        <TextBlock x:Name="textblock1" Margin="50,50,50,70" TextWrapping="Wrap"/>
         <Button x:Name="checkButton" Margin="200,250,200,20" Click="Button_Click" BorderThickness="0">Check
         </Button>
         <Button x:Name="wrongButton" Margin="50,250,0,20" HorizontalAlignment="Left" Width="100" BorderThickness="0" Content="Wrong" Click="wrongButton_Click"/>

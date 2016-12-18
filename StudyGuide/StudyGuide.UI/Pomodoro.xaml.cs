@@ -25,10 +25,12 @@ namespace StudyGuide.UI
         TimeSpan mr;
         TimeSpan temp;
         bool b = true;
+        List<TaskViewModel> tasks;
 
-        public Pomodoro(int minutesForWork, int minutesForRest, IEnumerable<TaskViewModel> tasks)
+        public Pomodoro(int minutesForWork, int minutesForRest, IEnumerable<TaskViewModel> t)
         {
             InitializeComponent();
+            tasks = (List<TaskViewModel>)t;
             TasksList.ItemsSource = tasks;
             mw = new TimeSpan(0, minutesForWork, 0);
             mr = new TimeSpan(0, minutesForRest, 0);
@@ -91,7 +93,10 @@ namespace StudyGuide.UI
         private void DoneTask_Click(object sender, RoutedEventArgs e)
         {
             if (TasksList.SelectedItem != null)
-                TasksList.Items.Remove(TasksList.SelectedItem);
+            {
+                var temp = TasksList.SelectedItem as TaskViewModel;
+                tasks.Remove(temp);
+            }
         }
     }
 }

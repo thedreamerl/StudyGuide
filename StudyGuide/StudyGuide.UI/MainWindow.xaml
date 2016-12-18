@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:StudyGuide.UI"
         mc:Ignorable="d"
-        Title="Study Guide" Height="400" Width="540" MinHeight="400" MinWidth="535">
+        Title="Study Guide" Height="400" Width="600" MinHeight="400" MinWidth="535">
     <Window.Resources>
         <Style TargetType="TextBlock">
             <Setter Property="FontFamily" Value="Verdana"/>
@@ -37,13 +37,13 @@
                     <DataTemplate DataType="local:StudyPlanViewModel">
                         <Grid Margin="0 5">
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="2*"/>
-                                <ColumnDefinition Width="4*"/>
-                                <ColumnDefinition Width="3*"/>
+                                <ColumnDefinition Width="30"/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
                             <TextBlock Grid.Column="0" Text="{Binding Begin, StringFormat='HH:mm'}"/>
-                            <TextBlock Grid.Column="1" Text="{Binding Subject}"/>
-                            <TextBlock Grid.Column="2" Text="{Binding WorkType}"/>
+                            <TextBlock Grid.Column="1" Margin="3 0" HorizontalAlignment="Left" Text="{Binding Subject}"/>
+                            <TextBlock Grid.Column="2" HorizontalAlignment="Left" Text="{Binding WorkType}"/>
                         </Grid>
                     </DataTemplate>
                 </ListBox.ItemTemplate>

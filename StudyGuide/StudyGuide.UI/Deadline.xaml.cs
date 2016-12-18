@@ -47,7 +47,11 @@ namespace StudyGuide.UI
         }
         private void Button_Delete_Click(object sender, RoutedEventArgs e)
         {
-            // сделать функцию для делита 
+            MessageBoxResult result = MessageBox.Show("Are you sure you want to delete deadline? This action can't be undone", "Attention", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            if (result == MessageBoxResult.No)
+                return;
+            Factory.Default.GetScheduleRepo().DeleteSchedule(schedule);
+            this.Close();
         }
     }
 }

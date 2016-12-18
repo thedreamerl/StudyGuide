@@ -34,13 +34,18 @@ namespace StudyGuide.UI
                 {
                     FlashCards fc = new FlashCards(schedule);
                     fc.ShowDialog();
-                    UpdateTable();
                 }
             }
+            UpdateTable();
         }
         private void UpdateTable()
         {
             flashcardsDataGrid.ItemsSource = Factory.Default.GetFlashCardsRepo().AllFlashCards(schedule);
+        }
+
+        private void Revise_Button_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
