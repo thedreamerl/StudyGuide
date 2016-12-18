@@ -43,7 +43,7 @@ namespace StudyGuide.UI
             }
         }
 
-        private void Next_Click(object sender, RoutedEventArgs e)
+        private async void Next_Click(object sender, RoutedEventArgs e)
         {
             Regex timeRegex = new Regex(@"^(\d{1,2}):(\d{2})$");
             Match match = timeRegex.Match(Time.Text);
@@ -80,7 +80,7 @@ namespace StudyGuide.UI
             {
                 list.Add(item.ToString());
             }
-            Factory.Default.GetTasksRepo().AddNewTasks(list, NewDate, Schedule);
+            await Factory.Default.GetTasksRepo().AddNewTasks(list, NewDate, Schedule);
             MessageBox.Show("Study plan item has been added successfully!");
             this.Close();
         }

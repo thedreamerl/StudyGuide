@@ -9,15 +9,15 @@ using System.Data.Entity;
 
 namespace StudyGuide.Logic.EntityRepos
 {
-    public class SubjectRepo
+    public class WorkTypeRepo
     {
         public async Task AddNew(string el)
         {
             using (var c = new Context())
             {
-                if (await c.Subjects.FirstOrDefaultAsync(x => x.Name == el) != null)
-                    throw new ArgumentException("This subject does already exist");
-                c.Subjects.Add(new Subject { Name = el });
+                if (await c.WorkType.FirstOrDefaultAsync(x => x.Name == el) != null)
+                    throw new ArgumentException("This work type does already exist");
+                c.WorkType.Add(new WorkType { Name = el });
                 await c.SaveChangesAsync();
             }
         }
@@ -28,8 +28,8 @@ namespace StudyGuide.Logic.EntityRepos
             {
                 using (var c = new Context())
                 {
-                    var result = (from f in c.Subjects
-                                  select f.Name).ToList();
+                    var result = (from w in c.WorkType
+                                  select w.Name).ToList();
                     return (IEnumerable<string>)result;
                 }
             });
