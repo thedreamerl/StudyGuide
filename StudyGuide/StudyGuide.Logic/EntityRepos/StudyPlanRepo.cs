@@ -79,10 +79,6 @@ namespace StudyGuide.Logic.EntityRepos
                                   Subject = s.ScheduleID.SubjectID.Name,
                                   WorkType = s.ScheduleID.WorkTypeID.Name
                               }).ToList();
-                foreach (var i in result)
-                {
-                    DeletePastStudyPlan(i);
-                }
                 AddEvent?.Invoke();
                 return result;
             }
