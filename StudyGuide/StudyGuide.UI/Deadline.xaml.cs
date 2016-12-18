@@ -28,11 +28,14 @@ namespace StudyGuide.UI
             SubjectText.Text = s.Subject;
             TypeText.Text = s.WorkType;
             schedule = s;
+        }
+        private async void UpdateList()
+        {
             var studyPlans = Factory.Default.GetStudyPlanRepo().ShowAll(schedule);
             foreach (var sp in studyPlans)
             {
                 StudyPlanList.Items.Add(sp.Begin.ToLongDateString() + "  " + sp.Begin.ToShortTimeString());
-                var tasks = Factory.Default.GetTasksRepo().ShowAll(sp.Begin, schedule);
+                var tasks = await Factory.Default.GetTasksRepo().ShowAll(sp.Begin, schedule);
                 foreach (var task in tasks)
                 {
                     StudyPlanList.Items.Add(task.Name);

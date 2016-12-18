@@ -11,7 +11,7 @@ namespace StudyGuide.Logic.EntityRepos
 {
     public class TasksRepo
     {
-        public void AddNewTasks(List<string> tasks, DateTime studyPlan, ScheduleViewModel schedule)
+        public async Task AddNewTasks(List<string> tasks, DateTime studyPlan, ScheduleViewModel schedule)
         {
             using (var c = new Context())
             {
@@ -25,23 +25,26 @@ namespace StudyGuide.Logic.EntityRepos
                     });
                 }
                 c.Tasks.AddRange(temp.ToArray());
-                c.SaveChanges();
+                await c.SaveChangesAsync();
             }
         }
-        public IEnumerable<TaskViewModel> ShowAll(DateTime studyPlan, ScheduleViewModel schedule)
+        public Task<IEnumerable<TaskViewModel>> ShowAll(DateTime studyPlan, ScheduleViewModel schedule)
         {
-            using (var c = new Context())
+            return Task.Run(() =>
             {
-                var result = (from t in c.Tasks
-                              where t.StudyPlan.Begin == studyPlan
-                              where t.StudyPlan.ScheduleID.SubjectID.Name == schedule.Subject
-                              where t.StudyPlan.ScheduleID.WorkTypeID.Name == schedule.WorkType
-                              select new TaskViewModel
-                              {
-                                  Name = t.Name,
-                              }).ToList();
-                return result;
-            }
+                using (var c = new Context())
+                {
+                    var result = (from t in c.Tasks
+                                  where t.StudyPlan.Begin == studyPlan
+                                  where t.StudyPlan.ScheduleID.SubjectID.Name == schedule.Subject
+                                  where t.StudyPlan.ScheduleID.WorkTypeID.Name == schedule.WorkType
+                                  select new TaskViewModel
+                                  {
+                                      Name = t.Name,
+                                  }).ToList();
+                    return (IEnumerable<TaskViewModel>)result;
+                }
+            });
         }
     }
 }

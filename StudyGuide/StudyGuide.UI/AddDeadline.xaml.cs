@@ -24,23 +24,31 @@ namespace StudyGuide.UI
         public AddDeadline()
         {
             InitializeComponent();
-            Subjects.ItemsSource = Factory.Default.GetSubjectRepo().ShowAll();
-            WorkTypes.ItemsSource = Factory.Default.GetWorkTypeRepo().ShowAll();
+            UpdateSubjects();
+            UpdateWorkTypes();
             TextBlock_Days.Visibility = Visibility.Hidden;
             Days.Visibility = Visibility.Hidden;
             HelperText.Visibility = Visibility.Hidden;
             Days.DisplayDateStart = DateTime.Now;
             Deadline.DisplayDateStart = DateTime.Now.AddDays(1);
         }
+        private async void UpdateSubjects()
+        {
+            Subjects.ItemsSource = await Factory.Default.GetSubjectRepo().ShowAll();
+        }
+        private async void UpdateWorkTypes()
+        {
+            WorkTypes.ItemsSource = await Factory.Default.GetWorkTypeRepo().ShowAll();
+        }
 
-        private void NewSubject_Click(object sender, RoutedEventArgs e)
+        private async void NewSubject_Click(object sender, RoutedEventArgs e)
         {
             if (!String.IsNullOrWhiteSpace(Subjects.Text))
                 try
                 {
-                    Factory.Default.GetSubjectRepo().AddNew(Subjects.Text);
+                    await Factory.Default.GetSubjectRepo().AddNew(Subjects.Text);
                     MessageBox.Show("Subject was successfully added!");
-                    Subjects.ItemsSource = Factory.Default.GetSubjectRepo().ShowAll();
+                    UpdateSubjects();
                     Subjects.SelectedIndex = Subjects.Items.Count - 1;
                 }
                 catch (ArgumentException ex)
@@ -49,14 +57,14 @@ namespace StudyGuide.UI
                 }
         }
 
-        private void NewWorkType_Click(object sender, RoutedEventArgs e)
+        private async void NewWorkType_Click(object sender, RoutedEventArgs e)
         {
             if (!String.IsNullOrWhiteSpace(WorkTypes.Text))
                 try
                 {
-                    Factory.Default.GetWorkTypeRepo().AddNew(WorkTypes.Text);
+                    await Factory.Default.GetWorkTypeRepo().AddNew(WorkTypes.Text);
                     MessageBox.Show("Work type was successfully added!");
-                    WorkTypes.ItemsSource = Factory.Default.GetWorkTypeRepo().ShowAll();
+                    UpdateWorkTypes();
                     WorkTypes.SelectedIndex = WorkTypes.Items.Count - 1;
                 }
                 catch (ArgumentException ex)
