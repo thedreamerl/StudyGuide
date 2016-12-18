@@ -96,6 +96,7 @@ namespace StudyGuide.UI
             {
                 var temp = TasksList.SelectedItem as TaskViewModel;
                 tasks.Remove(temp);
+                TasksList.ItemsSource = tasks;
             }
         }
     }
