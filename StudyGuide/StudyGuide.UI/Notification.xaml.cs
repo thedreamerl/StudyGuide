@@ -31,6 +31,7 @@ namespace StudyGuide.UI
             WorkType_Name.Text = s.WorkType;
             tasks = t;
             studyPlan = s;
+            Factory.Default.GetFlashCardsRepo().ShowMessgae += Message;
             Dispatcher.BeginInvoke(DispatcherPriority.ApplicationIdle, new Action(() =>
             {
                 var workingArea = System.Windows.Forms.Screen.PrimaryScreen.WorkingArea;
@@ -41,6 +42,10 @@ namespace StudyGuide.UI
                 this.Top = corner.Y - this.ActualHeight;
             }));
 
+        }
+        private void Message(string m)
+        {
+            MessageBox.Show(m);
         }
 
         private void PomodoroButton_Click(object sender, RoutedEventArgs e)

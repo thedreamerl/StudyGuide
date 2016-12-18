@@ -28,6 +28,13 @@ namespace StudyGuide.UI
             InitializeComponent();
             schedule = s;
             UpdateTable();
+            Factory.Default.GetFlashCardsRepo().ShowMessgae += Message;
+        }
+        private void Message(string m)
+        {
+            MessageBox.Show(m);
+            cards = (List<FlashCardViewModel>)Factory.Default.GetFlashCardsRepo().AllFlashCards(schedule);
+            flashcardsDataGrid.ItemsSource = cards;
         }
         private void UpdateTable()
         {
